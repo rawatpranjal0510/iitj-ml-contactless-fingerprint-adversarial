@@ -86,7 +86,7 @@ for name in ["nfiq2", "mclfiq"]:
     for t in (1, 2, 3):
         s = dd[dd.tier == t]; lo, hi = cival(DD, lambda x: x.loc[x.tier == t, P].mean())
         rows.append(dict(metric=name, tier=f"Q{t}", n=len(s), fingers=s.finger.nunique(), mean_M=s.M.mean(),
-                         median_eps_star=s.eps_star.median(), ASR=s[P].mean() * 100, lo=lo * 100, hi=hi * 100))
+                         median_eps_star=s.eps_star.median(), mean_S=s.S_clean.mean(), drop_002=(s.S_clean - s['S_adv_0.02']).mean(), drop_005=(s.S_clean - s['S_adv_0.05']).mean(), ASR=s[P].mean() * 100, lo=lo * 100, hi=hi * 100))
 T1 = pd.DataFrame(rows); save(T1, "tier_summary"); print(f"\nTier summary (ASR at eps={k(a.primary)}/255):\n", T1.round(3).to_string(index=False))
 
 # 2. Margin-band stratification: ASR by tier within narrow margin bands

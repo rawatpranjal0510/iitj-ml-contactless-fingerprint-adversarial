@@ -1,13 +1,13 @@
 [val] accepted pairs: 776 | NFIQ2 analysis set: 746 pairs, 57 fingers | B=1000
 
 Tier summary (ASR at eps=0.05/255):
- metric tier   n  fingers  mean_M  median_eps_star    ASR     lo     hi
- nfiq2   Q1 206       26   0.062            0.021 86.408 77.538 95.264
- nfiq2   Q2 239       29   0.088            0.029 74.477 57.081 91.699
- nfiq2   Q3 301       28   0.077            0.033 68.771 55.354 82.903
-mclfiq   Q1 216       30   0.071            0.025 80.093 68.801 91.450
-mclfiq   Q2 407       46   0.082            0.032 70.516 56.620 86.320
-mclfiq   Q3 153       22   0.069            0.024 83.660 71.125 92.796
+ metric tier   n  fingers  mean_M  median_eps_star  mean_S  drop_002  drop_005    ASR     lo     hi
+ nfiq2   Q1 206       26   0.062            0.021   0.746     0.052     0.136 86.408 77.538 95.264
+ nfiq2   Q2 239       29   0.088            0.029   0.772     0.049     0.130 74.477 57.081 91.699
+ nfiq2   Q3 301       28   0.077            0.033   0.761     0.041     0.109 68.771 55.354 82.903
+mclfiq   Q1 216       30   0.071            0.025   0.754     0.048     0.127 80.093 68.801 91.450
+mclfiq   Q2 407       46   0.082            0.032   0.765     0.044     0.117 70.516 56.620 86.320
+mclfiq   Q3 153       22   0.069            0.024   0.753     0.051     0.134 83.660 71.125 92.796
 
 ASR (%) by margin band x tier at eps=0.05/255 (n in brackets):
 tier                 Q1          Q2           Q3
