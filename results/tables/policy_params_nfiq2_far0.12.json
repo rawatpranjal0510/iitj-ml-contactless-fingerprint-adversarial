@@ -1,0 +1,10 @@
+{
+ "metric": "nfiq2",
+ "alpha": 0.12,
+ "qh": 0.31,
+ "qh_name": "c1",
+ "val_FAR": 0.11952572193536048,
+ "tau_global": 0.67153704,
+ "far_budget": 0.0012,
+ "primary": 0.05
+}

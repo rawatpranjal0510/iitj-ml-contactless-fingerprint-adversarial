@@ -1,0 +1,37 @@
+{
+ "tag": "v3",
+ "args": {
+  "tag": "v3",
+  "select": "eer",
+  "epochs": 40,
+  "warmup": 3,
+  "lr_bb": 0.0001,
+  "lr_head": 0.001,
+  "wd": 0.05,
+  "aug": "strong",
+  "dropout": 0.3,
+  "bn_emb": 1,
+  "smooth": 0.1,
+  "m": 0.4,
+  "s": 30.0,
+  "ramp": 8,
+  "patience": 12,
+  "seed": 0,
+  "no_pretrained": false,
+  "workers": 4,
+  "n_imp_train": 20000
+ },
+ "select": "eer",
+ "best_epoch": 22,
+ "cross_val_eer": 0.07837500796838148,
+ "cross_val_tar": 0.2566137566137566,
+ "all_val_eer": 0.058261002161604555,
+ "ci95_tar": [
+  0.18417658730158729,
+  0.3383101851851852
+ ],
+ "ci95_eer": [
+  0.06050566352712437,
+  0.09953828209664055
+ ]
+}

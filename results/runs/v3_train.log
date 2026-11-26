@@ -1,0 +1,64 @@
+cpu-bind=MASK - gpu2, task  0  0 [3424158]: mask 0xc0000000200000000000200000000000c0000000200000000000200000000000 set
+Node: gpu2  Start: Thu Nov 26 01:11:21 IST 2026
+name, memory.total [MiB]
+NVIDIA A100-SXM4-40GB, 40960 MiB
+CUDA available: True
+ep00 loss=9.471 trEER=11.78% valEER=17.55% crossEER=23.74% crossTAR@0.001=10.7% (s1 83 / s2 57) 8s  *
+ep01 loss=9.567 trEER=10.30% valEER=17.15% crossEER=22.48% crossTAR@0.001=10.4% (s1 81 / s2 50) 6s  *
+ep02 loss=9.281 trEER=9.65% valEER=15.22% crossEER=20.00% crossTAR@0.001=10.2% (s1 79 / s2 51) 6s  *
+ep03 loss=9.086 trEER=8.32% valEER=13.37% crossEER=17.79% crossTAR@0.001=8.3% (s1 80 / s2 52) 5s  *
+ep04 loss=8.883 trEER=5.23% valEER=11.36% crossEER=14.87% crossTAR@0.001=10.2% (s1 85 / s2 62) 5s  *
+ep05 loss=8.508 trEER=2.79% valEER=9.92% crossEER=12.99% crossTAR@0.001=16.1% (s1 89 / s2 70) 5s  *
+ep06 loss=8.276 trEER=2.17% valEER=9.09% crossEER=12.10% crossTAR@0.001=22.3% (s1 91 / s2 77) 5s  *
+ep07 loss=8.315 trEER=1.63% valEER=8.99% crossEER=12.09% crossTAR@0.001=20.8% (s1 90 / s2 78) 5s  *
+ep08 loss=6.945 trEER=1.06% valEER=8.56% crossEER=11.78% crossTAR@0.001=23.2% (s1 92 / s2 83) 5s  *
+ep09 loss=5.873 trEER=0.55% valEER=8.13% crossEER=10.91% crossTAR@0.001=21.3% (s1 92 / s2 81) 5s  *
+ep10 loss=5.137 trEER=0.57% valEER=6.96% crossEER=9.30% crossTAR@0.001=28.2% (s1 93 / s2 86) 5s  *
+ep11 loss=4.493 trEER=0.30% valEER=7.53% crossEER=10.28% crossTAR@0.001=22.1% (s1 93 / s2 85) 5s
+ep12 loss=3.896 trEER=0.18% valEER=6.59% crossEER=8.82% crossTAR@0.001=22.8% (s1 92 / s2 83) 5s  *
+ep13 loss=3.594 trEER=0.19% valEER=6.54% crossEER=9.15% crossTAR@0.001=25.5% (s1 93 / s2 86) 5s
+ep14 loss=3.319 trEER=0.07% valEER=6.67% crossEER=9.05% crossTAR@0.001=25.0% (s1 92 / s2 86) 5s
+ep15 loss=3.022 trEER=0.05% valEER=7.05% crossEER=9.58% crossTAR@0.001=24.9% (s1 93 / s2 86) 5s
+ep16 loss=2.932 trEER=0.07% valEER=6.22% crossEER=8.62% crossTAR@0.001=26.7% (s1 94 / s2 90) 5s  *
+ep17 loss=2.767 trEER=0.02% valEER=6.60% crossEER=8.83% crossTAR@0.001=22.6% (s1 93 / s2 85) 5s
+ep18 loss=2.628 trEER=0.01% valEER=6.13% crossEER=8.37% crossTAR@0.001=24.9% (s1 94 / s2 89) 5s  *
+ep19 loss=2.582 trEER=0.02% valEER=6.30% crossEER=8.53% crossTAR@0.001=25.3% (s1 94 / s2 89) 5s
+ep20 loss=2.515 trEER=0.00% valEER=6.28% crossEER=8.47% crossTAR@0.001=25.8% (s1 94 / s2 89) 5s
+ep21 loss=2.413 trEER=0.00% valEER=6.29% crossEER=8.49% crossTAR@0.001=27.9% (s1 94 / s2 88) 5s
+ep22 loss=2.294 trEER=0.00% valEER=5.83% crossEER=7.84% crossTAR@0.001=25.7% (s1 94 / s2 88) 5s  *
+ep23 loss=2.402 trEER=0.00% valEER=6.22% crossEER=8.69% crossTAR@0.001=24.2% (s1 93 / s2 88) 5s
+ep24 loss=2.238 trEER=0.00% valEER=6.21% crossEER=8.40% crossTAR@0.001=26.9% (s1 94 / s2 90) 5s
+ep25 loss=2.191 trEER=0.00% valEER=6.19% crossEER=8.47% crossTAR@0.001=24.6% (s1 94 / s2 89) 5s
+ep26 loss=2.136 trEER=0.00% valEER=6.39% crossEER=8.62% crossTAR@0.001=24.6% (s1 94 / s2 88) 5s
+ep27 loss=2.221 trEER=0.00% valEER=5.99% crossEER=8.21% crossTAR@0.001=25.3% (s1 94 / s2 89) 5s
+ep28 loss=2.087 trEER=0.00% valEER=6.04% crossEER=8.05% crossTAR@0.001=25.1% (s1 94 / s2 89) 5s
+ep29 loss=2.109 trEER=0.00% valEER=6.02% crossEER=8.14% crossTAR@0.001=25.2% (s1 94 / s2 89) 5s
+ep30 loss=2.071 trEER=0.00% valEER=6.06% crossEER=8.40% crossTAR@0.001=25.6% (s1 94 / s2 89) 5s
+ep31 loss=2.121 trEER=0.00% valEER=6.06% crossEER=8.37% crossTAR@0.001=25.5% (s1 94 / s2 90) 5s
+ep32 loss=2.025 trEER=0.00% valEER=6.08% crossEER=8.54% crossTAR@0.001=26.2% (s1 94 / s2 90) 5s
+ep33 loss=2.091 trEER=0.00% valEER=6.11% crossEER=8.57% crossTAR@0.001=26.0% (s1 94 / s2 90) 5s
+ep34 loss=1.943 trEER=0.00% valEER=6.08% crossEER=8.37% crossTAR@0.001=25.5% (s1 94 / s2 90) 5s
+early stop
+
+[v3] select=eer best epoch 22 | cross val EER = 7.84%  95% CI 6.05-9.95 | cross val TAR@FAR0.001 = 25.7%  95% CI 18.4-33.8
+
+[val] EER=5.83%  tau=0.6837  tau_floor=0.6413
+  tau      : FAR = 0.100%   TAR = 55.5%  (3076 of 5544 genuine)   TAR cross = 25.7%
+  tau_floor: FAR = 0.200%   TAR = 62.4%  (3458 of 5544 genuine)   TAR cross = 36.0%
+  TAR@tau by pair kind: {'cross': 25.7, 'within_s1': 94.4, 'within_s2': 88.1}
+
+[test] EER=7.56%  tau=0.6837  tau_floor=0.6413
+  tau      : FAR = 0.076%   TAR = 58.1%  (1917 of 3300 genuine)   TAR cross = 30.7%
+  tau_floor: FAR = 0.180%   TAR = 64.0%  (2112 of 3300 genuine)   TAR cross = 39.6%
+  TAR@tau by pair kind: {'cross': 30.7, 'within_s1': 92.5, 'within_s2': 89.3}
+[val] EER by genuine pair kind (same impostors):
+   within_s1  EER= 1.05%   mean S=0.901   TAR= 94.4%
+   within_s2  EER= 1.60%   mean S=0.832   TAR= 88.1%
+   cross      EER= 7.84%   mean S=0.567   TAR= 25.7%
+   impostor   mean S=0.041  99.9th pct=0.684
+[test] EER by genuine pair kind (same impostors):
+   within_s1  EER= 1.71%   mean S=0.883   TAR= 92.5%
+   within_s2  EER= 2.04%   mean S=0.831   TAR= 89.3%
+   cross      EER=10.50%   mean S=0.567   TAR= 30.7%
+   impostor   mean S=0.055  99.9th pct=0.671
+End: Thu Nov 26 01:15:54 IST 2026

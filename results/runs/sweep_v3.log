@@ -1,0 +1,254 @@
+cpu-bind=MASK - gpu2, task  0  0 [3425169]: mask 0xc0000000200000000000200000000000c0000000200000000000200000000000 set
+Node: gpu2  Start: Thu Nov 26 01:17:28 IST 2026
+
+===== v3_s1 : --seed 1 =====
+ep00 loss=9.364 trEER=12.08% valEER=16.97% crossEER=22.95% crossTAR@0.001=10.9% (s1 83 / s2 56) 6s  *
+ep01 loss=9.512 trEER=12.81% valEER=17.27% crossEER=23.78% crossTAR@0.001=12.2% (s1 84 / s2 56) 5s
+ep02 loss=9.462 trEER=9.94% valEER=15.04% crossEER=20.28% crossTAR@0.001=10.3% (s1 80 / s2 50) 5s  *
+ep03 loss=9.199 trEER=6.47% valEER=11.53% crossEER=15.47% crossTAR@0.001=12.6% (s1 85 / s2 60) 5s  *
+ep04 loss=9.020 trEER=4.76% valEER=10.08% crossEER=13.06% crossTAR@0.001=13.1% (s1 86 / s2 64) 5s  *
+ep05 loss=8.810 trEER=3.21% valEER=9.47% crossEER=12.70% crossTAR@0.001=14.1% (s1 89 / s2 69) 5s  *
+ep06 loss=8.507 trEER=2.02% valEER=8.32% crossEER=11.02% crossTAR@0.001=23.0% (s1 91 / s2 79) 5s  *
+ep07 loss=8.359 trEER=1.47% valEER=8.01% crossEER=10.98% crossTAR@0.001=23.4% (s1 91 / s2 77) 5s  *
+ep08 loss=7.260 trEER=0.82% valEER=7.58% crossEER=10.06% crossTAR@0.001=26.4% (s1 92 / s2 80) 5s  *
+ep09 loss=6.144 trEER=0.71% valEER=7.76% crossEER=10.45% crossTAR@0.001=26.5% (s1 92 / s2 83) 5s
+ep10 loss=5.118 trEER=0.39% valEER=6.73% crossEER=9.15% crossTAR@0.001=29.0% (s1 93 / s2 83) 5s  *
+ep11 loss=4.509 trEER=0.28% valEER=7.10% crossEER=9.58% crossTAR@0.001=28.9% (s1 93 / s2 84) 5s
+ep12 loss=4.099 trEER=0.18% valEER=6.82% crossEER=9.03% crossTAR@0.001=32.3% (s1 94 / s2 86) 5s  *
+ep13 loss=3.782 trEER=0.11% valEER=7.13% crossEER=9.39% crossTAR@0.001=27.2% (s1 92 / s2 87) 5s
+ep14 loss=3.277 trEER=0.14% valEER=6.78% crossEER=9.19% crossTAR@0.001=28.4% (s1 93 / s2 89) 5s
+ep15 loss=3.138 trEER=0.08% valEER=6.53% crossEER=8.70% crossTAR@0.001=26.9% (s1 93 / s2 87) 5s  *
+ep16 loss=2.855 trEER=0.04% valEER=6.75% crossEER=9.39% crossTAR@0.001=33.0% (s1 94 / s2 88) 5s
+ep17 loss=2.805 trEER=0.03% valEER=6.69% crossEER=8.98% crossTAR@0.001=30.3% (s1 92 / s2 89) 5s
+ep18 loss=2.686 trEER=0.01% valEER=6.38% crossEER=8.47% crossTAR@0.001=33.4% (s1 94 / s2 90) 5s  *
+ep19 loss=2.521 trEER=0.00% valEER=6.56% crossEER=8.69% crossTAR@0.001=34.4% (s1 94 / s2 91) 6s
+ep20 loss=2.505 trEER=0.00% valEER=6.43% crossEER=8.73% crossTAR@0.001=30.5% (s1 94 / s2 89) 6s
+ep21 loss=2.356 trEER=0.03% valEER=6.43% crossEER=8.39% crossTAR@0.001=36.6% (s1 94 / s2 92) 5s  *
+ep22 loss=2.304 trEER=0.00% valEER=6.37% crossEER=8.53% crossTAR@0.001=35.6% (s1 94 / s2 92) 5s
+ep23 loss=2.362 trEER=0.00% valEER=6.41% crossEER=8.64% crossTAR@0.001=34.7% (s1 94 / s2 91) 5s
+ep24 loss=2.263 trEER=0.00% valEER=6.02% crossEER=8.16% crossTAR@0.001=33.9% (s1 94 / s2 91) 5s  *
+ep25 loss=2.154 trEER=0.00% valEER=5.82% crossEER=7.55% crossTAR@0.001=32.9% (s1 94 / s2 91) 6s  *
+ep26 loss=2.139 trEER=0.00% valEER=6.16% crossEER=8.39% crossTAR@0.001=31.3% (s1 94 / s2 91) 5s
+ep27 loss=2.067 trEER=0.00% valEER=6.35% crossEER=8.48% crossTAR@0.001=31.7% (s1 94 / s2 91) 5s
+ep28 loss=2.108 trEER=0.02% valEER=6.44% crossEER=8.57% crossTAR@0.001=32.2% (s1 94 / s2 91) 5s
+ep29 loss=2.000 trEER=0.02% valEER=6.19% crossEER=8.17% crossTAR@0.001=31.8% (s1 94 / s2 91) 5s
+ep30 loss=2.182 trEER=0.00% valEER=6.18% crossEER=8.03% crossTAR@0.001=30.4% (s1 94 / s2 89) 5s
+ep31 loss=2.121 trEER=0.00% valEER=6.15% crossEER=8.11% crossTAR@0.001=30.6% (s1 94 / s2 91) 5s
+ep32 loss=2.031 trEER=0.00% valEER=6.03% crossEER=7.84% crossTAR@0.001=29.6% (s1 94 / s2 90) 5s
+ep33 loss=1.984 trEER=0.00% valEER=6.02% crossEER=8.01% crossTAR@0.001=30.0% (s1 94 / s2 90) 5s
+ep34 loss=2.005 trEER=0.00% valEER=6.03% crossEER=7.90% crossTAR@0.001=30.8% (s1 94 / s2 90) 5s
+ep35 loss=2.064 trEER=0.00% valEER=6.15% crossEER=8.13% crossTAR@0.001=32.1% (s1 94 / s2 90) 6s
+ep36 loss=1.955 trEER=0.00% valEER=6.17% crossEER=8.23% crossTAR@0.001=31.6% (s1 94 / s2 90) 5s
+ep37 loss=1.935 trEER=0.00% valEER=6.06% crossEER=7.90% crossTAR@0.001=31.2% (s1 94 / s2 90) 5s
+early stop
+
+[v3_s1] select=eer best epoch 25 | cross val EER = 7.55%  95% CI 6.25-9.29 | cross val TAR@FAR0.001 = 32.9%  95% CI 24.2-41.4
+
+===== v3_s2 : --seed 2 =====
+ep00 loss=9.399 trEER=11.85% valEER=17.89% crossEER=23.95% crossTAR@0.001=10.1% (s1 81 / s2 53) 7s  *
+ep01 loss=9.494 trEER=11.04% valEER=16.79% crossEER=22.43% crossTAR@0.001=10.2% (s1 81 / s2 50) 5s  *
+ep02 loss=9.157 trEER=9.23% valEER=15.48% crossEER=20.24% crossTAR@0.001=10.5% (s1 77 / s2 43) 6s  *
+ep03 loss=8.902 trEER=6.26% valEER=11.53% crossEER=15.19% crossTAR@0.001=11.8% (s1 84 / s2 59) 5s  *
+ep04 loss=8.865 trEER=5.40% valEER=9.94% crossEER=12.91% crossTAR@0.001=14.4% (s1 86 / s2 67) 6s  *
+ep05 loss=8.760 trEER=3.46% valEER=9.22% crossEER=12.16% crossTAR@0.001=20.5% (s1 91 / s2 77) 6s  *
+ep06 loss=8.509 trEER=2.13% valEER=8.60% crossEER=11.54% crossTAR@0.001=24.1% (s1 93 / s2 80) 6s  *
+ep07 loss=8.286 trEER=1.31% valEER=8.06% crossEER=11.11% crossTAR@0.001=21.7% (s1 90 / s2 80) 6s  *
+ep08 loss=7.057 trEER=1.22% valEER=8.06% crossEER=10.82% crossTAR@0.001=23.0% (s1 91 / s2 81) 6s  *
+ep09 loss=5.931 trEER=0.71% valEER=7.30% crossEER=9.78% crossTAR@0.001=30.3% (s1 93 / s2 86) 6s  *
+ep10 loss=5.238 trEER=0.41% valEER=7.05% crossEER=9.69% crossTAR@0.001=29.1% (s1 93 / s2 87) 6s  *
+ep11 loss=4.530 trEER=0.32% valEER=7.37% crossEER=9.75% crossTAR@0.001=24.1% (s1 92 / s2 85) 6s
+ep12 loss=3.992 trEER=0.16% valEER=6.98% crossEER=9.29% crossTAR@0.001=28.5% (s1 93 / s2 87) 6s  *
+ep13 loss=3.622 trEER=0.11% valEER=7.18% crossEER=9.79% crossTAR@0.001=24.2% (s1 92 / s2 84) 6s
+ep14 loss=3.311 trEER=0.07% valEER=6.56% crossEER=9.35% crossTAR@0.001=28.5% (s1 94 / s2 90) 6s
+ep15 loss=3.114 trEER=0.03% valEER=6.67% crossEER=9.13% crossTAR@0.001=27.7% (s1 93 / s2 89) 6s  *
+ep16 loss=3.009 trEER=0.03% valEER=6.29% crossEER=8.50% crossTAR@0.001=32.7% (s1 93 / s2 89) 6s  *
+ep17 loss=2.907 trEER=0.02% valEER=6.33% crossEER=8.66% crossTAR@0.001=31.6% (s1 94 / s2 89) 6s
+ep18 loss=2.620 trEER=0.01% valEER=6.71% crossEER=9.19% crossTAR@0.001=29.2% (s1 93 / s2 88) 6s
+ep19 loss=2.495 trEER=0.00% valEER=6.60% crossEER=9.45% crossTAR@0.001=26.8% (s1 94 / s2 88) 6s
+ep20 loss=2.477 trEER=0.01% valEER=6.55% crossEER=9.07% crossTAR@0.001=28.8% (s1 94 / s2 88) 6s
+ep21 loss=2.451 trEER=0.02% valEER=6.62% crossEER=8.96% crossTAR@0.001=30.0% (s1 94 / s2 90) 6s
+ep22 loss=2.326 trEER=0.00% valEER=5.99% crossEER=8.27% crossTAR@0.001=27.9% (s1 94 / s2 90) 6s  *
+ep23 loss=2.289 trEER=0.00% valEER=6.26% crossEER=8.73% crossTAR@0.001=28.5% (s1 94 / s2 90) 6s
+ep24 loss=2.204 trEER=0.00% valEER=6.04% crossEER=8.37% crossTAR@0.001=30.8% (s1 94 / s2 90) 6s
+ep25 loss=2.191 trEER=0.00% valEER=6.31% crossEER=8.53% crossTAR@0.001=31.6% (s1 94 / s2 90) 6s
+ep26 loss=2.197 trEER=0.00% valEER=6.34% crossEER=8.53% crossTAR@0.001=29.6% (s1 94 / s2 89) 6s
+ep27 loss=2.102 trEER=0.00% valEER=6.26% crossEER=8.41% crossTAR@0.001=30.6% (s1 94 / s2 91) 6s
+ep28 loss=2.082 trEER=0.00% valEER=6.37% crossEER=8.69% crossTAR@0.001=29.5% (s1 94 / s2 90) 6s
+ep29 loss=2.118 trEER=0.00% valEER=6.30% crossEER=8.66% crossTAR@0.001=31.3% (s1 94 / s2 90) 6s
+ep30 loss=2.075 trEER=0.00% valEER=6.22% crossEER=8.57% crossTAR@0.001=30.8% (s1 94 / s2 90) 5s
+ep31 loss=2.036 trEER=0.00% valEER=6.19% crossEER=8.69% crossTAR@0.001=29.5% (s1 94 / s2 90) 6s
+ep32 loss=2.023 trEER=0.00% valEER=6.17% crossEER=8.53% crossTAR@0.001=29.0% (s1 94 / s2 90) 6s
+ep33 loss=1.976 trEER=0.00% valEER=6.19% crossEER=8.42% crossTAR@0.001=28.6% (s1 94 / s2 90) 6s
+ep34 loss=2.048 trEER=0.00% valEER=6.20% crossEER=8.41% crossTAR@0.001=28.3% (s1 94 / s2 90) 6s
+early stop
+
+[v3_s2] select=eer best epoch 22 | cross val EER = 8.27%  95% CI 6.41-9.95 | cross val TAR@FAR0.001 = 27.9%  95% CI 19.8-35.9
+
+===== v3_m50 : --m 0.5 =====
+ep00 loss=9.806 trEER=11.76% valEER=17.45% crossEER=23.80% crossTAR@0.001=10.9% (s1 83 / s2 56) 6s  *
+ep01 loss=10.237 trEER=10.14% valEER=16.99% crossEER=22.56% crossTAR@0.001=10.7% (s1 81 / s2 51) 5s  *
+ep02 loss=10.272 trEER=9.53% valEER=14.88% crossEER=19.81% crossTAR@0.001=11.0% (s1 80 / s2 52) 5s  *
+ep03 loss=10.417 trEER=8.28% valEER=13.38% crossEER=18.05% crossTAR@0.001=8.3% (s1 80 / s2 52) 5s  *
+ep04 loss=10.517 trEER=5.10% valEER=11.45% crossEER=15.02% crossTAR@0.001=11.1% (s1 85 / s2 63) 5s  *
+ep05 loss=10.431 trEER=2.75% valEER=9.83% crossEER=13.20% crossTAR@0.001=16.5% (s1 90 / s2 71) 5s  *
+ep06 loss=10.432 trEER=2.24% valEER=8.85% crossEER=11.93% crossTAR@0.001=23.7% (s1 92 / s2 77) 5s  *
+ep07 loss=10.762 trEER=1.56% valEER=8.88% crossEER=12.02% crossTAR@0.001=21.9% (s1 90 / s2 79) 5s
+ep08 loss=9.107 trEER=1.14% valEER=8.35% crossEER=10.98% crossTAR@0.001=24.5% (s1 93 / s2 83) 5s  *
+ep09 loss=7.896 trEER=0.58% valEER=7.89% crossEER=10.75% crossTAR@0.001=23.8% (s1 92 / s2 82) 5s  *
+ep10 loss=6.886 trEER=0.48% valEER=6.98% crossEER=9.32% crossTAR@0.001=27.2% (s1 94 / s2 86) 5s  *
+ep11 loss=6.035 trEER=0.37% valEER=7.38% crossEER=10.22% crossTAR@0.001=25.7% (s1 93 / s2 86) 5s
+ep12 loss=5.218 trEER=0.21% valEER=7.00% crossEER=9.52% crossTAR@0.001=22.9% (s1 92 / s2 84) 5s
+ep13 loss=4.685 trEER=0.16% valEER=6.96% crossEER=9.07% crossTAR@0.001=27.0% (s1 93 / s2 86) 5s  *
+ep14 loss=4.290 trEER=0.09% valEER=6.80% crossEER=9.25% crossTAR@0.001=24.7% (s1 93 / s2 87) 5s
+ep15 loss=3.868 trEER=0.04% valEER=6.66% crossEER=9.16% crossTAR@0.001=25.6% (s1 93 / s2 88) 5s
+ep16 loss=3.656 trEER=0.02% valEER=6.39% crossEER=8.54% crossTAR@0.001=26.4% (s1 94 / s2 88) 5s  *
+ep17 loss=3.427 trEER=0.02% valEER=6.86% crossEER=9.19% crossTAR@0.001=22.1% (s1 92 / s2 86) 5s
+ep18 loss=3.203 trEER=0.00% valEER=6.26% crossEER=8.39% crossTAR@0.001=25.8% (s1 94 / s2 90) 5s  *
+ep19 loss=3.116 trEER=0.00% valEER=6.26% crossEER=8.34% crossTAR@0.001=24.1% (s1 93 / s2 89) 5s  *
+ep20 loss=2.981 trEER=0.00% valEER=5.87% crossEER=8.10% crossTAR@0.001=23.6% (s1 94 / s2 88) 5s  *
+ep21 loss=2.845 trEER=0.00% valEER=5.90% crossEER=7.91% crossTAR@0.001=27.7% (s1 94 / s2 90) 5s  *
+ep22 loss=2.618 trEER=0.00% valEER=5.88% crossEER=7.84% crossTAR@0.001=26.4% (s1 94 / s2 89) 5s  *
+ep23 loss=2.735 trEER=0.00% valEER=6.10% crossEER=8.38% crossTAR@0.001=24.7% (s1 94 / s2 90) 5s
+ep24 loss=2.550 trEER=0.00% valEER=6.48% crossEER=8.53% crossTAR@0.001=26.2% (s1 94 / s2 90) 5s
+ep25 loss=2.491 trEER=0.00% valEER=6.39% crossEER=8.79% crossTAR@0.001=23.2% (s1 94 / s2 90) 5s
+ep26 loss=2.403 trEER=0.00% valEER=6.13% crossEER=8.43% crossTAR@0.001=24.9% (s1 94 / s2 89) 5s
+ep27 loss=2.507 trEER=0.00% valEER=6.05% crossEER=8.00% crossTAR@0.001=25.1% (s1 94 / s2 90) 5s
+ep28 loss=2.308 trEER=0.00% valEER=6.06% crossEER=8.10% crossTAR@0.001=24.1% (s1 94 / s2 90) 5s
+ep29 loss=2.328 trEER=0.00% valEER=6.12% crossEER=8.30% crossTAR@0.001=24.0% (s1 94 / s2 89) 5s
+ep30 loss=2.285 trEER=0.00% valEER=6.05% crossEER=8.30% crossTAR@0.001=24.1% (s1 94 / s2 90) 5s
+ep31 loss=2.343 trEER=0.00% valEER=6.15% crossEER=8.20% crossTAR@0.001=25.4% (s1 94 / s2 90) 5s
+ep32 loss=2.250 trEER=0.00% valEER=6.15% crossEER=8.27% crossTAR@0.001=25.1% (s1 94 / s2 90) 5s
+ep33 loss=2.303 trEER=0.00% valEER=6.15% crossEER=8.47% crossTAR@0.001=25.3% (s1 94 / s2 90) 5s
+ep34 loss=2.101 trEER=0.00% valEER=6.04% crossEER=8.20% crossTAR@0.001=25.7% (s1 94 / s2 90) 5s
+early stop
+
+[v3_m50] select=eer best epoch 22 | cross val EER = 7.84%  95% CI 6.21-9.92 | cross val TAR@FAR0.001 = 26.4%  95% CI 20.0-33.9
+
+===== v3_m30 : --m 0.3 =====
+ep00 loss=9.135 trEER=11.76% valEER=17.46% crossEER=23.61% crossTAR@0.001=10.9% (s1 83 / s2 57) 6s  *
+ep01 loss=8.901 trEER=10.21% valEER=17.10% crossEER=22.49% crossTAR@0.001=10.5% (s1 81 / s2 50) 5s  *
+ep02 loss=8.281 trEER=9.78% valEER=15.10% crossEER=19.91% crossTAR@0.001=10.3% (s1 79 / s2 50) 5s  *
+ep03 loss=7.756 trEER=8.82% valEER=13.53% crossEER=18.42% crossTAR@0.001=7.7% (s1 80 / s2 51) 5s  *
+ep04 loss=7.264 trEER=5.14% valEER=11.69% crossEER=15.78% crossTAR@0.001=10.2% (s1 85 / s2 61) 5s  *
+ep05 loss=6.692 trEER=2.99% valEER=10.32% crossEER=13.66% crossTAR@0.001=17.0% (s1 90 / s2 70) 5s  *
+ep06 loss=6.259 trEER=2.20% valEER=8.93% crossEER=11.88% crossTAR@0.001=21.8% (s1 91 / s2 77) 5s  *
+ep07 loss=6.152 trEER=1.70% valEER=8.82% crossEER=11.85% crossTAR@0.001=21.6% (s1 90 / s2 78) 5s  *
+ep08 loss=5.031 trEER=1.17% valEER=9.14% crossEER=12.30% crossTAR@0.001=22.8% (s1 92 / s2 82) 5s
+ep09 loss=4.278 trEER=0.61% valEER=7.90% crossEER=10.57% crossTAR@0.001=22.4% (s1 92 / s2 80) 5s  *
+ep10 loss=3.788 trEER=0.46% valEER=7.41% crossEER=10.09% crossTAR@0.001=27.5% (s1 93 / s2 85) 5s  *
+ep11 loss=3.361 trEER=0.35% valEER=7.87% crossEER=10.75% crossTAR@0.001=25.0% (s1 93 / s2 85) 5s
+ep12 loss=2.991 trEER=0.20% valEER=7.39% crossEER=9.63% crossTAR@0.001=24.3% (s1 92 / s2 84) 5s  *
+ep13 loss=2.834 trEER=0.21% valEER=6.93% crossEER=9.42% crossTAR@0.001=27.1% (s1 93 / s2 85) 5s  *
+ep14 loss=2.653 trEER=0.16% valEER=6.83% crossEER=8.99% crossTAR@0.001=25.7% (s1 92 / s2 86) 5s  *
+ep15 loss=2.486 trEER=0.10% valEER=7.28% crossEER=9.85% crossTAR@0.001=25.1% (s1 93 / s2 87) 5s
+ep16 loss=2.457 trEER=0.07% valEER=6.88% crossEER=8.99% crossTAR@0.001=28.1% (s1 94 / s2 90) 5s  *
+ep17 loss=2.351 trEER=0.02% valEER=6.70% crossEER=9.16% crossTAR@0.001=25.8% (s1 93 / s2 87) 5s
+ep18 loss=2.262 trEER=0.02% valEER=6.62% crossEER=9.33% crossTAR@0.001=26.5% (s1 94 / s2 89) 5s
+ep19 loss=2.252 trEER=0.04% valEER=6.53% crossEER=8.55% crossTAR@0.001=25.8% (s1 94 / s2 89) 5s  *
+ep20 loss=2.179 trEER=0.02% valEER=6.24% crossEER=8.38% crossTAR@0.001=28.6% (s1 94 / s2 89) 5s  *
+ep21 loss=2.126 trEER=0.00% valEER=6.39% crossEER=8.56% crossTAR@0.001=29.3% (s1 94 / s2 89) 5s
+ep22 loss=2.051 trEER=0.01% valEER=6.15% crossEER=8.34% crossTAR@0.001=27.4% (s1 94 / s2 88) 5s  *
+ep23 loss=2.120 trEER=0.00% valEER=6.60% crossEER=9.05% crossTAR@0.001=27.3% (s1 94 / s2 89) 5s
+ep24 loss=2.027 trEER=0.02% valEER=6.68% crossEER=9.22% crossTAR@0.001=27.4% (s1 94 / s2 89) 5s
+ep25 loss=1.995 trEER=0.02% valEER=6.46% crossEER=8.93% crossTAR@0.001=26.7% (s1 94 / s2 90) 5s
+ep26 loss=1.933 trEER=0.01% valEER=6.48% crossEER=8.63% crossTAR@0.001=26.2% (s1 94 / s2 89) 5s
+ep27 loss=2.020 trEER=0.01% valEER=6.46% crossEER=8.70% crossTAR@0.001=26.5% (s1 94 / s2 90) 5s
+ep28 loss=1.926 trEER=0.00% valEER=6.57% crossEER=8.60% crossTAR@0.001=26.5% (s1 94 / s2 89) 5s
+ep29 loss=1.922 trEER=0.00% valEER=6.47% crossEER=8.61% crossTAR@0.001=27.4% (s1 94 / s2 89) 5s
+ep30 loss=1.883 trEER=0.00% valEER=6.39% crossEER=8.80% crossTAR@0.001=27.8% (s1 94 / s2 90) 5s
+ep31 loss=1.913 trEER=0.00% valEER=6.51% crossEER=8.93% crossTAR@0.001=27.8% (s1 94 / s2 90) 5s
+ep32 loss=1.852 trEER=0.00% valEER=6.31% crossEER=8.83% crossTAR@0.001=27.7% (s1 94 / s2 90) 5s
+ep33 loss=1.910 trEER=0.00% valEER=6.40% crossEER=8.95% crossTAR@0.001=28.3% (s1 94 / s2 90) 5s
+ep34 loss=1.811 trEER=0.00% valEER=6.39% crossEER=8.86% crossTAR@0.001=28.1% (s1 94 / s2 90) 5s
+early stop
+
+[v3_m30] select=eer best epoch 22 | cross val EER = 8.34%  95% CI 6.38-10.34 | cross val TAR@FAR0.001 = 27.4%  95% CI 20.0-35.4
+
+===== v3_reg : --wd 0.1 --dropout 0.5 =====
+ep00 loss=9.632 trEER=11.71% valEER=17.69% crossEER=24.26% crossTAR@0.001=10.6% (s1 83 / s2 55) 6s  *
+ep01 loss=10.163 trEER=10.31% valEER=16.74% crossEER=22.62% crossTAR@0.001=10.1% (s1 80 / s2 53) 5s  *
+ep02 loss=10.302 trEER=10.03% valEER=16.63% crossEER=22.52% crossTAR@0.001=10.7% (s1 78 / s2 48) 5s  *
+ep03 loss=10.331 trEER=9.07% valEER=15.84% crossEER=21.33% crossTAR@0.001=8.4% (s1 78 / s2 48) 5s  *
+ep04 loss=10.440 trEER=6.77% valEER=11.40% crossEER=14.82% crossTAR@0.001=7.6% (s1 80 / s2 56) 5s  *
+ep05 loss=10.537 trEER=5.11% valEER=11.01% crossEER=14.65% crossTAR@0.001=11.8% (s1 85 / s2 63) 5s  *
+ep06 loss=10.712 trEER=3.25% valEER=9.38% crossEER=12.61% crossTAR@0.001=18.5% (s1 88 / s2 71) 6s  *
+ep07 loss=10.915 trEER=2.34% valEER=9.51% crossEER=12.37% crossTAR@0.001=20.9% (s1 90 / s2 73) 5s  *
+ep08 loss=9.761 trEER=1.76% valEER=9.69% crossEER=13.26% crossTAR@0.001=17.7% (s1 90 / s2 75) 6s
+ep09 loss=8.703 trEER=1.03% valEER=8.41% crossEER=11.22% crossTAR@0.001=20.1% (s1 90 / s2 78) 5s  *
+ep10 loss=7.739 trEER=0.62% valEER=7.31% crossEER=9.89% crossTAR@0.001=17.9% (s1 90 / s2 76) 5s  *
+ep11 loss=6.754 trEER=0.62% valEER=7.64% crossEER=10.46% crossTAR@0.001=21.1% (s1 92 / s2 81) 5s
+ep12 loss=5.990 trEER=0.38% valEER=7.61% crossEER=9.99% crossTAR@0.001=26.2% (s1 93 / s2 84) 6s
+ep13 loss=5.412 trEER=0.28% valEER=7.07% crossEER=9.52% crossTAR@0.001=23.2% (s1 93 / s2 82) 5s  *
+ep14 loss=4.916 trEER=0.25% valEER=7.09% crossEER=9.57% crossTAR@0.001=18.1% (s1 91 / s2 80) 5s
+ep15 loss=4.384 trEER=0.17% valEER=6.84% crossEER=9.02% crossTAR@0.001=20.5% (s1 92 / s2 83) 5s  *
+ep16 loss=4.207 trEER=0.14% valEER=6.33% crossEER=8.67% crossTAR@0.001=24.1% (s1 93 / s2 86) 5s  *
+ep17 loss=3.967 trEER=0.05% valEER=6.91% crossEER=9.23% crossTAR@0.001=22.0% (s1 93 / s2 84) 5s
+ep18 loss=3.572 trEER=0.01% valEER=6.23% crossEER=8.21% crossTAR@0.001=21.0% (s1 93 / s2 86) 5s  *
+ep19 loss=3.462 trEER=0.02% valEER=6.03% crossEER=8.10% crossTAR@0.001=22.0% (s1 94 / s2 87) 5s  *
+ep20 loss=3.317 trEER=0.00% valEER=6.35% crossEER=8.33% crossTAR@0.001=21.5% (s1 93 / s2 86) 5s
+ep21 loss=3.160 trEER=0.00% valEER=6.29% crossEER=8.46% crossTAR@0.001=21.6% (s1 93 / s2 86) 6s
+ep22 loss=2.900 trEER=0.00% valEER=6.15% crossEER=8.13% crossTAR@0.001=24.5% (s1 94 / s2 86) 5s
+ep23 loss=2.972 trEER=0.00% valEER=6.75% crossEER=8.87% crossTAR@0.001=21.0% (s1 93 / s2 84) 5s
+ep24 loss=2.858 trEER=0.00% valEER=6.44% crossEER=8.56% crossTAR@0.001=22.1% (s1 94 / s2 86) 5s
+ep25 loss=2.760 trEER=0.00% valEER=6.49% crossEER=8.46% crossTAR@0.001=22.1% (s1 93 / s2 87) 5s
+ep26 loss=2.620 trEER=0.00% valEER=6.38% crossEER=8.21% crossTAR@0.001=21.8% (s1 93 / s2 86) 5s
+ep27 loss=2.771 trEER=0.00% valEER=6.17% crossEER=7.97% crossTAR@0.001=22.4% (s1 93 / s2 87) 5s  *
+ep28 loss=2.543 trEER=0.00% valEER=6.22% crossEER=8.00% crossTAR@0.001=20.7% (s1 93 / s2 86) 5s
+ep29 loss=2.516 trEER=0.00% valEER=5.86% crossEER=7.77% crossTAR@0.001=20.9% (s1 93 / s2 86) 5s  *
+ep30 loss=2.539 trEER=0.00% valEER=5.98% crossEER=7.84% crossTAR@0.001=21.7% (s1 93 / s2 87) 6s
+ep31 loss=2.552 trEER=0.00% valEER=6.08% crossEER=8.00% crossTAR@0.001=21.8% (s1 93 / s2 86) 5s
+ep32 loss=2.506 trEER=0.00% valEER=6.15% crossEER=8.04% crossTAR@0.001=22.3% (s1 94 / s2 86) 5s
+ep33 loss=2.500 trEER=0.00% valEER=6.10% crossEER=8.07% crossTAR@0.001=22.3% (s1 94 / s2 87) 5s
+ep34 loss=2.300 trEER=0.00% valEER=6.17% crossEER=8.00% crossTAR@0.001=22.1% (s1 93 / s2 87) 5s
+ep35 loss=2.416 trEER=0.00% valEER=6.15% crossEER=8.13% crossTAR@0.001=21.0% (s1 93 / s2 86) 6s
+ep36 loss=2.419 trEER=0.00% valEER=6.22% crossEER=8.28% crossTAR@0.001=21.5% (s1 93 / s2 87) 6s
+ep37 loss=2.335 trEER=0.00% valEER=6.23% crossEER=8.16% crossTAR@0.001=22.4% (s1 94 / s2 87) 5s
+ep38 loss=2.404 trEER=0.00% valEER=6.13% crossEER=8.11% crossTAR@0.001=22.4% (s1 94 / s2 87) 5s
+ep39 loss=2.330 trEER=0.00% valEER=6.06% crossEER=8.05% crossTAR@0.001=22.3% (s1 94 / s2 87) 6s
+
+[v3_reg] select=eer best epoch 29 | cross val EER = 7.77%  95% CI 6.18-9.55 | cross val TAR@FAR0.001 = 20.9%  95% CI 13.6-29.2
+
+===== v3_lr3 : --lr_bb 3e-4 =====
+ep00 loss=9.338 trEER=10.42% valEER=15.88% crossEER=21.26% crossTAR@0.001=11.1% (s1 85 / s2 60) 6s  *
+ep01 loss=8.791 trEER=9.04% valEER=13.47% crossEER=18.02% crossTAR@0.001=7.9% (s1 82 / s2 54) 5s  *
+ep02 loss=8.051 trEER=7.56% valEER=13.10% crossEER=17.43% crossTAR@0.001=12.4% (s1 85 / s2 62) 5s  *
+ep03 loss=7.499 trEER=4.50% valEER=10.57% crossEER=13.73% crossTAR@0.001=13.6% (s1 89 / s2 69) 5s  *
+ep04 loss=6.834 trEER=2.22% valEER=8.53% crossEER=11.40% crossTAR@0.001=17.0% (s1 90 / s2 74) 5s  *
+ep05 loss=6.231 trEER=2.13% valEER=8.97% crossEER=12.07% crossTAR@0.001=15.7% (s1 89 / s2 71) 5s
+ep06 loss=5.779 trEER=0.99% valEER=8.96% crossEER=12.33% crossTAR@0.001=21.8% (s1 90 / s2 77) 5s
+ep07 loss=5.567 trEER=0.60% valEER=7.32% crossEER=10.02% crossTAR@0.001=20.5% (s1 91 / s2 78) 5s  *
+ep08 loss=4.494 trEER=0.35% valEER=7.16% crossEER=9.75% crossTAR@0.001=27.2% (s1 94 / s2 85) 5s  *
+ep09 loss=3.825 trEER=0.28% valEER=7.14% crossEER=9.57% crossTAR@0.001=22.0% (s1 94 / s2 82) 5s  *
+ep10 loss=3.291 trEER=0.12% valEER=7.79% crossEER=10.41% crossTAR@0.001=23.0% (s1 94 / s2 84) 5s
+ep11 loss=2.930 trEER=0.11% valEER=7.54% crossEER=9.95% crossTAR@0.001=29.3% (s1 94 / s2 87) 5s
+ep12 loss=2.547 trEER=0.01% valEER=6.55% crossEER=8.70% crossTAR@0.001=25.9% (s1 95 / s2 88) 5s  *
+ep13 loss=2.404 trEER=0.01% valEER=7.00% crossEER=9.63% crossTAR@0.001=26.7% (s1 95 / s2 89) 5s
+ep14 loss=2.305 trEER=0.00% valEER=7.31% crossEER=9.75% crossTAR@0.001=25.2% (s1 95 / s2 85) 5s
+ep15 loss=2.128 trEER=0.00% valEER=7.14% crossEER=9.76% crossTAR@0.001=24.1% (s1 93 / s2 85) 5s
+ep16 loss=2.137 trEER=0.00% valEER=6.35% crossEER=8.50% crossTAR@0.001=29.0% (s1 96 / s2 90) 5s  *
+ep17 loss=2.047 trEER=0.00% valEER=6.51% crossEER=8.99% crossTAR@0.001=24.9% (s1 96 / s2 88) 5s
+ep18 loss=1.922 trEER=0.00% valEER=6.80% crossEER=9.06% crossTAR@0.001=26.8% (s1 95 / s2 88) 5s
+ep19 loss=1.953 trEER=0.00% valEER=6.47% crossEER=8.83% crossTAR@0.001=27.4% (s1 96 / s2 89) 5s
+ep20 loss=1.974 trEER=0.00% valEER=6.48% crossEER=8.87% crossTAR@0.001=30.1% (s1 96 / s2 88) 5s
+ep21 loss=1.825 trEER=0.00% valEER=6.85% crossEER=9.09% crossTAR@0.001=26.2% (s1 96 / s2 86) 5s
+ep22 loss=1.785 trEER=0.00% valEER=6.80% crossEER=9.33% crossTAR@0.001=23.6% (s1 95 / s2 84) 5s
+ep23 loss=1.847 trEER=0.00% valEER=6.26% crossEER=8.33% crossTAR@0.001=29.2% (s1 96 / s2 88) 5s  *
+ep24 loss=1.797 trEER=0.00% valEER=6.83% crossEER=9.45% crossTAR@0.001=27.0% (s1 96 / s2 88) 5s
+ep25 loss=1.742 trEER=0.00% valEER=6.32% crossEER=8.63% crossTAR@0.001=31.3% (s1 96 / s2 89) 5s
+ep26 loss=1.719 trEER=0.00% valEER=5.95% crossEER=8.01% crossTAR@0.001=30.7% (s1 96 / s2 88) 5s  *
+ep27 loss=1.750 trEER=0.00% valEER=6.09% crossEER=8.23% crossTAR@0.001=30.1% (s1 96 / s2 87) 5s
+ep28 loss=1.641 trEER=0.00% valEER=6.04% crossEER=8.37% crossTAR@0.001=30.5% (s1 96 / s2 88) 5s
+ep29 loss=1.669 trEER=0.00% valEER=6.22% crossEER=8.42% crossTAR@0.001=29.8% (s1 96 / s2 87) 5s
+ep30 loss=1.627 trEER=0.00% valEER=6.08% crossEER=8.40% crossTAR@0.001=27.9% (s1 96 / s2 87) 5s
+ep31 loss=1.652 trEER=0.00% valEER=6.01% crossEER=8.34% crossTAR@0.001=28.3% (s1 96 / s2 86) 5s
+ep32 loss=1.634 trEER=0.00% valEER=6.15% crossEER=8.30% crossTAR@0.001=29.1% (s1 97 / s2 87) 5s
+ep33 loss=1.613 trEER=0.00% valEER=6.40% crossEER=8.76% crossTAR@0.001=30.0% (s1 97 / s2 88) 5s
+ep34 loss=1.560 trEER=0.00% valEER=6.37% crossEER=8.56% crossTAR@0.001=29.8% (s1 96 / s2 88) 5s
+ep35 loss=1.605 trEER=0.00% valEER=6.49% crossEER=8.76% crossTAR@0.001=29.9% (s1 96 / s2 88) 5s
+ep36 loss=1.567 trEER=0.00% valEER=6.40% crossEER=8.68% crossTAR@0.001=30.0% (s1 96 / s2 87) 5s
+ep37 loss=1.556 trEER=0.00% valEER=6.28% crossEER=8.57% crossTAR@0.001=30.0% (s1 96 / s2 88) 5s
+ep38 loss=1.576 trEER=0.00% valEER=6.37% crossEER=8.60% crossTAR@0.001=29.6% (s1 96 / s2 88) 5s
+early stop
+
+[v3_lr3] select=eer best epoch 26 | cross val EER = 8.01%  95% CI 6.35-9.92 | cross val TAR@FAR0.001 = 30.7%  95% CI 22.2-39.1
+End: Thu Nov 26 01:42:50 IST 2026

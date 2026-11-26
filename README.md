@@ -32,3 +32,20 @@ Environment: `~/.conda/envs/fp_env` (PyTorch 2.5.1, statsmodels 0.15); SLURM `--
 - **Attack budgets**: PGD saturates at the proposal grid {1,2,4,8}/255 (100% ASR), so a fine grid {0.01..0.15}/255 and a per-pair robustness radius eps* (bisection) were added. Sub-1/255 budgets are robustness distances in continuous pixel space, not storable 8-bit attacks.
 - **Stage 1**: primary outcome log eps* (OLS); success at fixed eps via Firth logistic (separation). 1,000-resample finger-clustered bootstrap. Finger fixed-effects check added. Replicated on val.
 - **Stage 2**: tau(Q) = clip(tau_fixed - alpha*max(0, Q_high - Q), tau_floor, tau_fixed); NFIQ2 failures keep tau_fixed. alpha and Q_high tuned on val (max Q1 TAR under attack at eps=0.05/255, val FAR <= 0.15%). Added baseline B2-global = one threshold at B2's val FAR.
+
+## Repository layout
+- `./`: pipeline scripts (see Pipeline); `src/`: model, dataset, pairs, evaluation
+- `results/`: outputs of the run reported in the paper (rebuild with `./make_release.sh`)
+  - `tables/`: CSV + LaTeX tables (Stage 1 `*_test`/`*_val`, `policy_*`, `b4_*`, `policy_params_*.json`)
+  - `figures/`: publication figures (PNG + PDF)
+  - `data/`: `images.csv` (split), `quality.csv`, `attacks_{test,val}.csv`, `attacks_test_strong.csv`
+  - `runs/`: training and sweep summaries; `logs/`: analysis, policy and attack logs
+  - `tau.json`, `quality_cutoffs.json`, `split.json`
+- `paper/`: IEEE paper (`main.tex`, `refs.bib`, `figures/`); zip the folder and upload it to Overleaf
+
+Not in git: the PolyU dataset (licence), checkpoints (`out/ckpt`), large regenerable files (`pairs_*`, `scores_*`, `qimg`).
+
+## Additional checks
+- Attack budget (Stage 1): after log-margin control, the NFIQ2 odds ratio for success is below 1 at eps = 0.02, 0.03, 0.05, 0.075/255 on test (all CIs exclude 1) and at 3 of 4 on validation.
+- Attack strength: 5 restarts x 100 steps on 100 random accepted test pairs left eps* unchanged (median ratio 1.000, IQR 0.995-1.000, Spearman 1.000; ASR 73.0% vs 73.0%).
+- attack.py checks recomputed clean scores against calibrate.py (tolerance 1e-2; GPU models differ at about 1e-3 because of TF32).

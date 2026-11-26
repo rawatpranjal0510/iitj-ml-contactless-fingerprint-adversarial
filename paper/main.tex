@@ -1,0 +1,324 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+% Figures live in figures/ as PDFs (copied from out/figs/paper/).
+% If a file is missing, a labelled box is drawn so the paper still compiles.
+\newcommand{\fig}[2]{\IfFileExists{figures/#1.pdf}{\includegraphics[width=#2]{figures/#1}}%
+  {\fbox{\parbox[c][3cm][c]{0.95#2}{\centering\small Missing: figures/\detokenize{#1}.pdf}}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\taufix}{\tau_{\mathrm{fixed}}}
+\newcommand{\taufloor}{\tau_{\mathrm{floor}}}
+
+\begin{document}
+
+\title{Margin-Controlled Adversarial Vulnerability Measurement and Quality-Adaptive Thresholding in Deep Contactless Fingerprint Verification}
+
+\author{\IEEEauthorblockN{Kalpana Yadav, Pranjal Rawat, Vaibhav Kunte}
+\IEEEauthorblockA{Indian Institute of Technology Jodhpur, India\\
+\{M24MA2005, M24MA2008, M26MAC011\}@iitj.ac.in}}
+
+\maketitle
+
+\begin{abstract}
+Low-quality contactless fingerprint probes appear more vulnerable to adversarial attack, but they also have lower clean similarity scores and therefore sit closer to the acceptance threshold. We ask whether image quality predicts adversarial vulnerability \emph{beyond} the clean verification margin $M = S_{\mathrm{clean}} - \tau$. On the PolyU Contactless 2D database, a ResNet-18/ArcFace verifier is attacked with white-box $L_\infty$ PGD on cross-session genuine pairs, and each pair's robustness radius $\eps^*$ (the smallest budget that crosses $\tau$) is measured. The matcher breaks completely at $\eps = 1/255$; random noise of equal budget does not. Margin explains about half of the raw association between NFIQ2 quality and robustness. A small residual survives every margin control on held-out test fingers ($\eps^*$ ratio 1.068 per $+0.1$ quality, 95\% CI 1.039--1.099) and replicates on validation (1.038, 1.016--1.063), but it disappears within fingers (finger fixed effects: $p = 0.08$ and $0.47$), pointing to finger-level traits rather than capture quality. A quality-adaptive threshold bounded by a FAR floor raises low-quality TAR by 9.1 points at 0.12\% FAR, yet against a single threshold at equal FAR it redistributes acceptance rather than adding it. Margin-based rejection prevents attacks far more efficiently than quality-based rejection.
+\end{abstract}
+
+\begin{IEEEkeywords}
+contactless fingerprint, adversarial robustness, biometric quality, NFIQ2, MCLFIQ, threshold policy, confounding
+\end{IEEEkeywords}
+
+\section{Introduction}
+A deep fingerprint verifier accepts a probe $x_p$ against an enrolled template $x_e$ when the cosine similarity of their embeddings exceeds a threshold $\tau$. Small adversarial perturbations can push genuine pairs below $\tau$ \cite{szegedy2014,goodfellow2015,madry2018}, and contactless capture yields probes of widely varying quality. It is tempting to compare attack success across quality tiers and conclude that poor captures are structurally fragile. That comparison is confounded: under one global $\tau$, low-quality pairs have lower clean scores and smaller margins $M = S_{\mathrm{clean}} - \tau$, so they need less perturbation to cross the threshold whatever their quality.
+
+We separate threshold proximity from structural fragility. Our research question is whether image quality predicts adversarial vulnerability beyond the clean margin, and whether a quality-adaptive threshold can recover genuine acceptance for poor captures without loosening security. Our contributions are:
+\begin{itemize}
+\item a margin-controlled measurement protocol that combines narrow margin bands, a per-pair robustness radius $\eps^*$, finger-clustered bootstrap inference, and a within-finger check;
+\item evidence that margin explains about half of the raw quality effect and that the residual is a between-finger association, replicated on an independent split;
+\item a FAR-floored quality-adaptive threshold evaluated against an equal-FAR global threshold, which reveals that its gain for poor captures is a redistribution;
+\item hard-rejection curves showing that margin, not quality, identifies attackable pairs.
+\end{itemize}
+
+\section{Related Work}
+\textbf{Adversarial examples.} Imperceptible perturbations fool deep networks \cite{szegedy2014}; FGSM \cite{goodfellow2015} and projected gradient descent (PGD) \cite{madry2018} are the standard first-order attacks, and minimal-perturbation attacks measure distance to the decision boundary \cite{carlini2017}. We use PGD within a bisection to estimate each pair's minimal budget.
+
+\textbf{Deep verification.} Additive angular margin losses such as ArcFace \cite{deng2019} train discriminative embeddings on residual backbones \cite{he2016}; we use the same recipe for contactless fingerprints \cite{polyu}.
+
+\textbf{Biometric quality.} Quality measures are validated by how well they predict recognition error \cite{grother2007}. NFIQ2 \cite{nfiq2} is the reference for contact fingerprints, and MCLFIQ \cite{mclfiq} retrains it on synthetic contactless samples. To our knowledge, quality has rarely been evaluated as a predictor of adversarial robustness with the margin confounder controlled.
+
+\section{Method}
+\subsection{Verification and margin}
+An embedder $f$ maps an image in $[0,1]^{H\times W}$ to a unit vector. A pair is scored by $S(x_p, x_e) = f(x_p)^\top f(x_e)$ and accepted when $S > \tau$. For an accepted genuine pair, the clean margin is $M = S - \taufix > 0$.
+
+\subsection{Attack and robustness radius}
+The attacker perturbs only the probe, with the enrolled embedding fixed, using $L_\infty$ PGD dodging:
+\begin{equation}
+x^{t+1} = \Pi_{\|x - x_p\|_\infty \le \eps,\; x \in [0,1]}\!\left(x^t - \alpha\, \mathrm{sign}\, \nabla_x S(x^t, x_e)\right),
+\end{equation}
+with $T = 50$ steps, $\alpha = 2.5\eps/T$, one random start, keeping the lowest similarity reached. An attack succeeds when $S_{\mathrm{adv}} \le \taufix$. The robustness radius is
+\begin{equation}
+\eps^* = \min\{\eps : \min_{\mathrm{PGD}} S(x_p + \delta, x_e) \le \taufix\},
+\end{equation}
+found by 10 bisection steps on $[0, 0.5/255]$. To first order, $\min_{\|\delta\|_\infty \le \eps} S(x_p + \delta) \approx S - \eps \|\nabla_x S\|_1$, so
+\begin{equation}
+\eps^* \approx M / \|\nabla_x S\|_1 .
+\end{equation}
+A pair breaks early either because its margin is small or because its input gradient is large; the question is whether quality affects the second factor. As a control (B3), random $\pm\eps$ sign noise is applied to every pixel, taking the worst of 10 draws.
+
+\subsection{Quality}
+Each probe receives a quality $Q \in [0,1]$ from NFIQ2 \cite{nfiq2} (primary) or MCLFIQ \cite{mclfiq}. Tiers $Q_1$/$Q_2$/$Q_3$ are the tertiles of validation session-2 probes.
+
+\subsection{Stage 1: confounder isolation}
+Accepted genuine pairs are grouped into margin bands of width $\Delta m = 0.05$, and attack success rate (ASR) is compared across tiers within each band. We then fit
+\begin{equation}
+\log \eps^*_i = \beta_0 + \beta_1 \cdot 10\,Q_i + g(M_i) + u_i ,
+\end{equation}
+with $g \in \{0,\ \gamma M,\ \text{band dummies},\ \gamma \log M\}$, and the analogous logistic model for success at a fixed budget, estimated with Firth's bias reduction \cite{firth1993} because success is almost separated by $M$. All intervals come from a 1{,}000-resample bootstrap \cite{efron1993} clustered by finger. $H_0: \beta_1 = 0$ is rejected when the interval excludes zero. A fixed-effects model adds one intercept per finger, so only within-finger quality variation identifies $\beta_1$.
+
+\subsection{Stage 2: quality-adaptive threshold}
+The policy relaxes the threshold for poor captures and never below a FAR floor:
+\begin{equation}
+\tau(Q) = \mathrm{clip}\!\left(\taufix - \alpha\max(0, Q_{\mathrm{high}} - Q),\ \taufloor,\ \taufix\right).
+\end{equation}
+Probes whose quality could not be measured keep $\taufix$. Since $\tau(Q) \ge \taufloor$, FAR cannot exceed the floor's 0.2\%. $\alpha \in [0,1]$ and $Q_{\mathrm{high}}$ are tuned on validation to maximise $Q_1$ TAR under attack at $\eps = 0.05/255$, subject to validation FAR $\le 0.15\%$. Besides the fixed threshold (B1), we add B2-global: one threshold set to the adaptive policy's validation FAR, which isolates the value of relaxing by quality.
+
+\section{Experimental Setup}
+\textbf{Data.} The PolyU Contactless 2D database \cite{polyu} has 336 fingers in session 1 and 160 returning in session 2, six $350\times225$ grayscale images each (2{,}976 images). The split is subject-disjoint (seed 42; Table~\ref{tab:split}). Validation and test fingers appear in both sessions; validation sets every threshold, tier and tuning choice, and test is used once.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\caption{Subject-disjoint split. Impostors for validation and test are all cross-session pairs (S1 enrolled, S2 probe).}
+\label{tab:split}
+\begin{tabular}{lrrrr}
+\toprule
+Split & Fingers & Images & Genuine (cross) & Impostors \\
+\midrule
+Train & 202 & 1{,}368 & --- & --- \\
+Validation & 84 & 1{,}008 & 5{,}544 (3{,}024) & 250{,}992 \\
+Test & 50 & 600 & 3{,}300 (1{,}800) & 88{,}200 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Matcher.} An ImageNet-pretrained ResNet-18 \cite{he2016} with a 128-D embedding (dropout 0.3, BatchNorm head) is trained with ArcFace ($s=30$, $m=0.40$, margin ramp over 8 epochs) \cite{deng2019}, AdamW (backbone LR $10^{-4}$, head $10^{-3}$, weight decay 0.05), label smoothing 0.1, and contactless augmentations without flips. Inputs are $224\times352$, preserving the native aspect ratio, and normalisation sits inside the model so attacks act in $[0,1]$ pixel space. The checkpoint with the lowest validation cross-session EER is kept. A six-run sweep (three seeds, ArcFace margin 0.3 and 0.5, stronger regularisation, larger backbone LR) stayed within seed variation (validation cross EER 7.55--8.34\%), so the baseline was retained.
+
+\textbf{Thresholds.} $\taufix = 0.6837$ (FAR 0.1\%) and $\taufloor = 0.6413$ (FAR 0.2\%) are frozen on validation cross-session impostors with a conservative quantile. Realised test FARs are 0.076\% and 0.180\%.
+
+\textbf{Quality tooling.} PolyU images carry no resolution, and the NFIQ2 minutiae extractor finds no fingerprint area in raw contactless images. Each image is therefore made contact-like by local mean/std normalisation ($\sigma = 8$ px) and inversion, and saved at 500 DPI; the measured ridge period (8.6 px) already matches 500 PPI. Table~\ref{tab:quality} validates each metric against genuine scores. NFIQ2 v2.3 orders probes as the matcher does and agrees with v2.2 (Spearman 0.91). MCLFIQ, trained on v2.2 features, runs backwards under v2.3 and saturates under v2.2, so it serves as an ablation.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Quality validity on validation cross-session genuine pairs: spread of probe scores, Spearman correlation with the genuine score, and TAR at $\taufix$ per tier.}
+\label{tab:quality}
+\begin{tabular}{lcccc}
+\toprule
+Metric & IQR & $\rho(Q,S)$ & TAR $Q_1/Q_2/Q_3$ (\%) & Fail \\
+\midrule
+NFIQ2 v2.3 & 0.23--0.56 & $+0.177$ & 20.3 / 25.5 / 29.8 & 23 \\
+NFIQ2 v2.2 & 0.23--0.50 & $+0.151$ & 21.6 / 24.0 / 29.7 & 28 \\
+MCLFIQ (v2.3) & 0.85--0.89 & $-0.127$ & 28.3 / 27.7 / 19.5 & 1 \\
+MCLFIQ (v2.2) & 0.96--0.99 & $+0.034$ & 22.6 / 33.7 / 22.4 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Attacked pairs.} Every genuine cross pair with $S > \taufloor$ is attacked (713 test, 1{,}090 validation), so all Stage 2 policies are scored on identical pairs. Stage 1 uses the pairs accepted at $\taufix$: 553 from 35 test fingers and 776 from 57 validation fingers.
+
+\section{Results}
+\subsection{Matcher and fragility}
+Same-session pairs are easy (test EER 1.71\% and 2.04\%), but cross-session matching is hard: test EER 10.50\% and TAR 30.7\% at $\taufix$, with a mean genuine score (0.567) below the threshold.
+
+The undefended verifier is extremely fragile (Fig.~\ref{fig:asr}). PGD succeeds on every accepted pair at all proposal budgets $\{1,2,4,8\}/255$, with a mean similarity drop of 1.68 at $1/255$. On a fine grid, test ASR rises from 15.0\% at $0.01/255$ to 100\% at $0.15/255$; the median $\eps^*$ is $0.034/255$. Equal-budget random noise succeeds on at most 1.1\% of pairs below $0.15/255$, so the fragility is directional. A ten-times stronger attack (5 restarts $\times$ 100 steps) on 100 random accepted test pairs left $\eps^*$ unchanged (median ratio 1.000, IQR 0.995--1.000, Spearman 1.000; identical ASR of 73.0\% at $0.05/255$), so the standard attack is already at full strength. Budgets below $1/255$ are distances to the decision boundary in continuous pixel space, not storable 8-bit attacks.
+
+\begin{figure*}[t]
+\centering
+\fig{fig2_asr_vs_eps}{\textwidth}
+\caption{Attack success on accepted cross-session pairs against the $L_\infty$ budget, by NFIQ2 tier, with the equal-budget random-noise control (B3). Shaded: the proposal's budget grid, where PGD succeeds on every pair.}
+\label{fig:asr}
+\end{figure*}
+
+\subsection{Stage 1: quality beyond margin}
+\textbf{The confounder is present.} Low-quality probes have the smallest margins and the highest ASR (Table~\ref{tab:tiers}). Median $\eps^*$ for $Q_1$ is about half that of $Q_2$ and $Q_3$ on test.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{2.6pt}
+\caption{Accepted pairs by NFIQ2 tier: margin, robustness radius and ASR at $\eps = 0.05/255$ (95\% finger-clustered CI).}
+\label{tab:tiers}
+\begin{tabular}{llrrccc}
+\toprule
+Split & Tier & Pairs & Fing. & Mean $M$ & Med.\ $\eps^*$ & ASR (\%) \\
+\midrule
+\multirow{3}{*}{Test} & $Q_1$ & 172 & 20 & 0.072 & 0.024 & 92.4 (88.8--97.1) \\
+ & $Q_2$ & 143 & 16 & 0.112 & 0.044 & 58.0 (29.9--86.5) \\
+ & $Q_3$ & 232 & 13 & 0.093 & 0.043 & 59.1 (38.4--78.0) \\
+\midrule
+\multirow{3}{*}{Val} & $Q_1$ & 206 & 26 & 0.062 & 0.021 & 86.4 (77.5--95.3) \\
+ & $Q_2$ & 239 & 29 & 0.088 & 0.029 & 74.5 (57.1--91.7) \\
+ & $Q_3$ & 301 & 28 & 0.077 & 0.033 & 68.8 (55.4--82.9) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Within margin bands.} Below $M = 0.10$ every tier saturates (Fig.~\ref{fig:bands}). In the informative band $[0.10, 0.15)$, ASR is 78.9/61.5/16.4\% for $Q_1/Q_2/Q_3$ on test and 51.4/68.2/14.0\% on validation: $Q_3$ is consistently far lower, while the $Q_1$--$Q_2$ order does not replicate. Fig.~\ref{fig:epsstar} shows $\eps^*$ tracking margin almost perfectly (Spearman 0.95 and 0.98), with the $Q_3$ fit above $Q_1$ at equal margin on test.
+
+\begin{figure*}[t]
+\centering
+\fig{fig3_asr_bands}{\textwidth}
+\caption{ASR at $\eps = 0.05/255$ within clean-margin bands, test (left) and validation (right), with 95\% finger-clustered CIs. Numbers above bars are pair counts; bands below $M = 0.10$ are saturated.}
+\label{fig:bands}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\fig{fig4_epsstar_vs_M}{\textwidth}
+\caption{Robustness radius $\eps^*$ against clean margin (log--log), with a fitted line per NFIQ2 tier, test (left) and validation (right).}
+\label{fig:epsstar}
+\end{figure*}
+
+\textbf{Regression.} Table~\ref{tab:reg} and Fig.~\ref{fig:forest} report the quality effect before and after margin control. Margin halves the log-scale effect on test (0.130 to about 0.07). The residual survives every control on test and the binned and log controls on validation; log margin, the form implied by Eq.~(3), gives the tightest intervals. Odds ratios grow more extreme after control instead of shrinking, a non-collapsibility effect when the outcome is nearly determined by $M$; we therefore treat $\log \eps^*$ as primary. Keeping or excluding NFIQ2 failures changes nothing (log-$M$ ratio 1.068 either way).
+
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Quality effect per $+0.1$ NFIQ2 quality, before and after margin control (95\% finger-clustered bootstrap CI; fixed-effects row: cluster-robust SE). An $\eps^*$ ratio above 1 means better quality needs a larger perturbation; an odds ratio below 1 means fewer successful attacks at $\eps = 0.05/255$.}
+\label{tab:reg}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Margin control & $\eps^*$ ratio, test & $\eps^*$ ratio, validation & Odds ratio, test & Odds ratio, validation \\
+\midrule
+None & 1.138 (1.045--1.267) & 1.075 (0.992--1.177) & 0.725 (0.543--0.871) & 0.815 (0.642--0.984) \\
+Linear $M$ & 1.073 (1.033--1.109) & 1.031 (0.993--1.076) & 0.384 (0.196--0.619) & 0.639 (0.317--0.908) \\
+Binned $M$ & 1.075 (1.034--1.110) & 1.041 (1.007--1.083) & 0.502 (0.343--0.730) & 0.690 (0.404--0.919) \\
+$\log M$ & 1.068 (1.037--1.095) & 1.038 (1.016--1.063) & 0.389 (0.197--0.615) & 0.643 (0.329--0.903) \\
+$\log M$ + finger fixed effects & 1.032 (0.996--1.068), $p=0.080$ & 1.016 (0.974--1.060), $p=0.47$ & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\fig{fig5_forest_nfiq2}{\textwidth}
+\caption{NFIQ2 quality effect before and after margin control, test (circles) and validation (squares). Left: robustness radius; right: odds of attack success at $\eps = 0.05/255$.}
+\label{fig:forest}
+\end{figure*}
+
+\textbf{Within fingers.} With one intercept per finger, the effect falls to 1.032 ($p = 0.08$) on test and 1.016 ($p = 0.47$) on validation. Within-finger quality varies little (median SD 0.045--0.050), so this test has limited power, but neither estimate is significant.
+
+\textbf{Answer to $H_0$.} Across pairs, $H_0: \beta_1 = 0$ is rejected: NFIQ2 quality predicts robustness beyond margin, with a modest effect (about $1.6\times$ larger $\eps^*$ from $Q = 0$ to $0.7$ on test and $1.3\times$ on validation, at equal margin). In the causal sense the hypothesis concerns, the data support it: the residual is a between-finger association, consistent with finger traits such as worn ridges driving both low quality and fragility, not an effect of capture quality within a finger.
+
+\subsection{Stage 2: quality-adaptive threshold}
+Tuning chose $Q_{\mathrm{high}} = 0.65$ and $\alpha = 0.085$ (validation FAR 0.148\%): probes below $Q \approx 0.15$ receive $\taufloor$, with a linear ramp to $\taufix$. B2-global uses $\tau = 0.6583$. On validation, the adaptive frontier lies above the global one at every FAR from 0.10\% to 0.15\% (Fig.~\ref{fig:frontier}).
+
+\begin{figure*}[t]
+\centering
+\fig{fig7_policy_frontier_val}{\textwidth}
+\caption{Validation frontier for $Q_1$ probes: TAR against FAR for adaptive policies and a single global threshold, clean (left) and under PGD at $\eps = 0.05/255$ (right). The star marks the chosen policy at the 0.15\% FAR budget.}
+\label{fig:frontier}
+\end{figure*}
+
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Test results by policy (all \%). Attack TAR: genuine cross pairs still accepted after PGD at $\eps = 0.05/255$. Bottom rows: differences in percentage points [95\% finger-clustered CI].}
+\label{tab:policy}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lccccccc}
+\toprule
+Policy & FAR & TAR & TAR $Q_1$ & TAR $Q_2$ & TAR $Q_3$ & Attack TAR & $Q_1$ attack TAR \\
+\midrule
+B1 fixed $\taufix$ & 0.08 & 30.72 & 22.47 & 29.07 & 44.96 & 9.33 & 1.64 \\
+B2 adaptive $\tau(Q)$ & 0.12 & 35.72 & 31.57 & 32.11 & 45.54 & 11.72 & 5.56 \\
+B2-global (equal val.\ FAR) & 0.13 & 35.94 & 29.29 & 32.72 & 49.22 & 12.61 & 3.91 \\
+$\taufloor$ for all & 0.18 & 39.61 & 32.95 & 36.79 & 52.52 & 14.94 & 5.68 \\
+\midrule
+B2 $-$ B1 & & $+5.0$ [3.2, 7.1] & $+9.1$ [5.7, 12.5] & & & $+2.4$ [0.8, 4.4] & $+3.9$ [0.8, 7.6] \\
+B2 $-$ B2-global & & $-0.2$ [$-1.4$, 0.8] & $+2.3$ [1.1, 3.5] & & & $-0.9$ [$-2.4$, 0.4] & $+1.6$ [0.3, 3.2] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+On test (Table~\ref{tab:policy}), B2 lifts $Q_1$ TAR by 9.1 points clean and 3.9 points under attack at 0.12\% FAR, meeting the proposal's criterion. Against B2-global at equal FAR, it still helps $Q_1$ (+2.3 points clean, +1.6 under attack) but overall TAR is unchanged ($-0.2$, n.s.) and $Q_3$ loses about 4 points. The policy redistributes acceptance toward poor captures. No threshold acts as a defence: under attack at $0.05/255$, TAR stays at 9--15\% overall and at most 6\% for $Q_1$.
+
+\textbf{Hard rejection (B4).} Among pairs accepted by B1, rejecting genuine pairs with the lowest quality or the smallest margin removes successful attacks (Table~\ref{tab:b4}, Fig.~\ref{fig:b4}). At $\eps = 0.05/255$, where 70\% of accepted pairs are breakable, both rules are only slightly better than random. At $0.02/255$, the margin rule prevents 65\% of attacks at 20\% genuine rejection, against 30\% for the quality rule.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\caption{B4 on test: successful attacks prevented (\%) when the given share of accepted genuine pairs is rejected by lowest quality or smallest margin. Random rejection prevents the same share it rejects.}
+\label{tab:b4}
+\begin{tabular}{ccccc}
+\toprule
+ & \multicolumn{2}{c}{$\eps = 0.05/255$} & \multicolumn{2}{c}{$\eps = 0.02/255$} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Rejected & Quality & Margin & Quality & Margin \\
+\midrule
+10\% & 13.8 & 14.4 & 17.7 & 32.3 \\
+20\% & 26.2 & 28.7 & 29.9 & 64.7 \\
+30\% & 39.7 & 43.1 & 42.7 & 90.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\fig{fig9_b4_rejection}{\columnwidth}
+\caption{B4 hard-rejection trade-off on test at $\eps = 0.05/255$: share of successful attacks prevented against share of genuine users rejected.}
+\label{fig:b4}
+\end{figure}
+
+\subsection{Ablations}
+Table~\ref{tab:abl} varies the quality metric, attack budget and FAR budget. In every run, B2 beats B2-global on $Q_1$ by 2.2--3.7 points with intervals above zero. A 0.20\% budget selects the same policy as 0.15\% because the validation objective plateaus near 0.148\% FAR. In Stage 1, MCLFIQ shows an association only without margin control (test $\eps^*$ ratio 1.664, 1.141--2.639), which vanishes with log margin (1.189, 0.924--1.384) and on validation (0.996). Across attack budgets (Table~\ref{tab:epsabl}), the NFIQ2 effect after log-margin control keeps its direction everywhere and its interval excludes 1 at every budget on test and at three of four on validation; the exception, $0.075/255$, has near-saturated ASR.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Stage 1 ablation over attack budget: odds ratio of attack success per $+0.1$ NFIQ2 quality after log-margin control (Firth logistic, 95\% finger-clustered CI).}
+\label{tab:epsabl}
+\begin{tabular}{lcc}
+\toprule
+$\eps$ ($\times 1/255$) & Test & Validation \\
+\midrule
+0.02 & 0.614 (0.306--0.824) & 0.697 (0.526--0.942) \\
+0.03 & 0.588 (0.325--0.848) & 0.745 (0.530--0.982) \\
+0.05 & 0.389 (0.197--0.615) & 0.643 (0.329--0.903) \\
+0.075 & 0.324 (0.085--0.553) & 0.709 (0.291--1.017) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Stage 2 ablations on test. Each run is tuned on validation; gains in percentage points with 95\% finger-clustered CIs.}
+\label{tab:abl}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Run & $Q_{\mathrm{high}}$, $\alpha$ & Test FAR & $Q_1$ TAR, B1 $\to$ B2 & $Q_1$ gain vs B1 & $Q_1$ gain vs B2-global \\
+\midrule
+Main (NFIQ2, $\eps = 0.05/255$, budget 0.15\%) & 0.65, 0.085 & 0.12\% & 22.5 $\to$ 31.6 & $+9.1$ (5.7, 12.5) & $+2.3$ (1.1, 3.5) \\
+Metric: MCLFIQ & 0.99, 0.985 & 0.10\% & 24.0 $\to$ 34.1 & $+10.1$ (5.1, 15.1) & $+3.4$ (1.5, 5.3) \\
+Attack budget $\eps = 0.02/255$ & 0.50, 0.180 & 0.12\% & 22.5 $\to$ 32.6 & $+10.1$ (6.6, 13.5) & $+3.7$ (2.2, 5.1) \\
+FAR budget 0.12\% & 0.31, 0.120 & 0.09\% & 22.5 $\to$ 27.8 & $+5.3$ (2.6, 8.2) & $+2.2$ (0.4, 4.0) \\
+FAR budget 0.20\% & 0.65, 0.085 & 0.12\% & \multicolumn{3}{c}{identical to main} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Discussion and Limitations}
+Margin dominates. Once the threshold is fixed, how close a genuine pair sits to $\tau$ decides almost entirely how much perturbation it withstands, and the quality signal beyond margin is small and mostly between fingers. For deployment, this means quality scores are weak guides to adversarial risk, margin-based rejection is the more efficient lever, and quality-adaptive thresholds are a fairness tool for poor captures rather than a security gain.
+
+Several limits apply. Test Stage 1 rests on 35 fingers and some band-by-tier cells are small, which is why validation was used as a replication. Within-finger quality varies little, so the fixed-effects test is underpowered. Cross-session TAR at 0.1\% FAR is about 31\%, so accepted pairs are a selected subset, and a stronger matcher could shift margins. The model is undefended, so absolute $\eps^*$ values are specific to this setting. Sub-$1/255$ budgets are boundary distances, not storable attacks. NFIQ2 and MCLFIQ require a contact-like conversion that evens out illumination, so $Q$ mainly reflects ridge clarity. The fine $\eps$ grid was set from a small test smoke run on overall ASR only; the validation replication guards Stage 1 against this. Finally, only one dataset was studied.
+
+\section{Conclusion}
+On cross-session contactless verification, poor-quality probes look more vulnerable mainly because they sit closer to the threshold. After margin control, NFIQ2 quality retains a small, replicated association with robustness that reflects finger-level traits rather than capture quality. A FAR-floored adaptive threshold recovers acceptance for poor captures at bounded FAR but only by redistribution, and margin-based rejection protects far better than quality-based rejection. Robustness evaluations of biometric systems should report margin-controlled effects rather than raw comparisons across quality tiers.
+
+\section*{Acknowledgment}
+The PolyU Contactless 2D Fingerprint Database was kindly provided by the Biometrics Research Centre, The Hong Kong Polytechnic University.
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}
