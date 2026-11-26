@@ -1,0 +1,11 @@
+# Conda environment used for all reported results.
+# Create with:  conda env create -f environment.yml   (then: conda activate fp_env)
+name: fp_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - -r requirements.txt

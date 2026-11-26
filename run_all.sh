@@ -4,11 +4,11 @@
 # GPU stages submit SLURM jobs; wait for each to finish before the next stage.
 set -e; cd /iitjhome/m24ma2008/Pranjal/MLProject/Codes; PY=~/.conda/envs/fp_env/bin/python
 case "$1" in
-  phase1)        $PY data.py; $PY -m src.pairs; sbatch train_job.sh ;;           # E0 train v3 (select by val cross EER) + E1 calibrate + diag
-  sweep)         sbatch sweep_job.sh ;;                                         # optional: 6-run model-selection sweep (kept v3)
+  phase1)        $PY data.py; $PY -m src.pairs; sbatch jobs/train_job.sh ;;           # E0 train v3 (select by val cross EER) + E1 calibrate + diag
+  sweep)         sbatch jobs/sweep_job.sh ;;                                         # optional: 6-run model-selection sweep (kept v3)
   quality_prep)  $PY quality.py prep ;;                                         # -> out/qimg.zip; score on Windows (README), copy CSVs to out/
   quality_merge) $PY quality.py merge ;;                                        # -> out/quality.csv, out/quality_cutoffs.json (val tertiles)
-  attacks)       sbatch attack_job.sh --splits test; sbatch attack_job.sh --splits val ;;
+  attacks)       sbatch jobs/attack_job.sh --splits test; sbatch jobs/attack_job.sh --splits val ;;
   analysis)      $PY analyze.py --file attacks_test; $PY analyze.py --file attacks_val
                  $PY policy.py; $PY policy.py --metric mclfiq
                  $PY policy.py --primary 0.02 --suffix _eps0.02
