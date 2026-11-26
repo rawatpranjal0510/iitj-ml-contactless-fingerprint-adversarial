@@ -1,38 +1,47 @@
-\documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
-\usepackage{cite}
+% CVPR-format report (template: https://github.com/cvpr-org/author-kit)
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[pagenumbers]{cvpr}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{xcolor}
-\usepackage[hidelinks]{hyperref}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\def\confName{CVPR}
+\def\confYear{2027}
 
-% Figures live in figures/ as PDFs (copied from out/figs/paper/).
-% If a file is missing, a labelled box is drawn so the paper still compiles.
+% Figures live in figures/ as PDFs. A missing file draws a labelled box so the paper still compiles.
 \newcommand{\fig}[2]{\IfFileExists{figures/#1.pdf}{\includegraphics[width=#2]{figures/#1}}%
   {\fbox{\parbox[c][3cm][c]{0.95#2}{\centering\small Missing: figures/\detokenize{#1}.pdf}}}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\taufix}{\tau_{\mathrm{fixed}}}
 \newcommand{\taufloor}{\tau_{\mathrm{floor}}}
-
-\begin{document}
+\newcommand{\repo}{https://github.com/rawatpranjal0510/iitj-ml-contactless-fingerprint-adversarial}
 
 \title{Margin-Controlled Adversarial Vulnerability Measurement and Quality-Adaptive Thresholding in Deep Contactless Fingerprint Verification}
 
-\author{\IEEEauthorblockN{Kalpana Yadav, Pranjal Rawat, Vaibhav Kunte}
-\IEEEauthorblockA{Indian Institute of Technology Jodhpur, India\\
-\{M24MA2005, M24MA2008, M26MAC011\}@iitj.ac.in}}
+\author{Kalpana Yadav\\
+IIT Jodhpur\\
+{\tt\small M24MA2005@iitj.ac.in}
+\and
+Pranjal Rawat\\
+IIT Jodhpur\\
+{\tt\small M24MA2008@iitj.ac.in}
+\and
+Vaibhav Kunte\\
+IIT Jodhpur\\
+{\tt\small M26MAC011@iitj.ac.in}
+}
+
+\begin{document}
 
 \maketitle
 
 \begin{abstract}
-Low-quality contactless fingerprint probes appear more vulnerable to adversarial attack, but they also have lower clean similarity scores and therefore sit closer to the acceptance threshold. We ask whether image quality predicts adversarial vulnerability \emph{beyond} the clean verification margin $M = S_{\mathrm{clean}} - \tau$. On the PolyU Contactless 2D database, a ResNet-18/ArcFace verifier is attacked with white-box $L_\infty$ PGD on cross-session genuine pairs, and each pair's robustness radius $\eps^*$ (the smallest budget that crosses $\tau$) is measured. The matcher breaks completely at $\eps = 1/255$; random noise of equal budget does not. Margin explains about half of the raw association between NFIQ2 quality and robustness. A small residual survives every margin control on held-out test fingers ($\eps^*$ ratio 1.068 per $+0.1$ quality, 95\% CI 1.037--1.095) and replicates on validation (1.038, 1.016--1.063), but it disappears within fingers (finger fixed effects: $p = 0.08$ and $0.47$), pointing to finger-level traits rather than capture quality. A quality-adaptive threshold bounded by a FAR floor raises low-quality TAR by 9.1 points at 0.12\% FAR, yet against a single threshold at equal FAR it redistributes acceptance rather than adding it. Margin-based rejection prevents attacks far more efficiently than quality-based rejection.
+Low-quality contactless fingerprint probes appear more vulnerable to adversarial attack, but they also have lower clean similarity scores and therefore sit closer to the acceptance threshold. We ask whether image quality predicts adversarial vulnerability \emph{beyond} the clean verification margin $M = S_{\mathrm{clean}} - \tau$. On the PolyU Contactless 2D database, a ResNet-18/ArcFace verifier is attacked with white-box $L_\infty$ PGD on cross-session genuine pairs, and each pair's robustness radius $\eps^*$ (the smallest budget that crosses $\tau$) is measured. The matcher breaks completely at $\eps = 1/255$; random noise of equal budget does not. Margin explains about half of the raw association between NFIQ2 quality and robustness. A small residual survives every margin control on held-out test fingers ($\eps^*$ ratio 1.068 per $+0.1$ quality, 95\% CI 1.037--1.095) and replicates on validation (1.038, 1.016--1.063), but it disappears within fingers (finger fixed effects: $p = 0.08$ and $0.47$), pointing to finger-level traits rather than capture quality. A quality-adaptive threshold bounded by a FAR floor raises low-quality TAR by 9.1 points at 0.12\% FAR, yet against a single threshold at equal FAR it redistributes acceptance rather than adding it. Margin-based rejection prevents attacks far more efficiently than quality-based rejection. Code, checkpoint, environment and all results: \url{\repo} (release \texttt{v1.0}).
 \end{abstract}
 
-\begin{IEEEkeywords}
-contactless fingerprint, adversarial robustness, biometric quality, NFIQ2, MCLFIQ, threshold policy, confounding
-\end{IEEEkeywords}
 
 \section{Introduction}
 A deep fingerprint verifier accepts a probe $x_p$ against an enrolled template $x_e$ when the cosine similarity of their embeddings exceeds a threshold $\tau$. Small adversarial perturbations can push genuine pairs below $\tau$ \cite{szegedy2014,goodfellow2015,madry2018}, and contactless capture yields probes of widely varying quality. It is tempting to compare attack success across quality tiers and conclude that poor captures are structurally fragile. That comparison is confounded: under one global $\tau$, low-quality pairs have lower clean scores and smaller margins $M = S_{\mathrm{clean}} - \tau$, so they need less perturbation to cross the threshold whatever their quality.
@@ -314,13 +323,46 @@ Several limits apply. Test Stage 1 rests on 35 fingers and some band-by-tier cel
 
 \textbf{Quality gaming.} Because $\tau(Q)$ lowers the threshold for poor captures, an attacker could submit a deliberately degraded probe to obtain the lenient threshold. Our FAR covers zero-effort impostors only; a deployed adaptive policy needs safeguards against quality spoofing.
 
+\section{Reproducibility}
+\label{sec:repro}
+\textbf{Declaration.} All results, tables and figures in this report were produced by the code in our repository (\url{\repo}) at release tag \texttt{v1.0} (commit \texttt{a845df5}), with the environment and checkpoint listed below and the split recorded in \texttt{results/split.json}. All seeds are fixed (split 42, training 0, attacks 0, bootstrap 0). Every choice that could affect results (checkpoint, thresholds, quality tiers, $\alpha$, $Q_{\mathrm{high}}$) was made on validation; test was used once. Per-pair outputs, all tables and all logs of the reported run are in \texttt{results/}, so each number can be checked against a file.
+
+\textbf{Environment.} Python 3.10.22, PyTorch 2.5.1 (CUDA 12.4), torchvision 0.20.1, NumPy 1.26.4, pandas 2.3.3, SciPy 1.15.3, scikit-learn 1.7.2, statsmodels 0.15.0, matplotlib 3.10.9 (\texttt{environment.yml}, pinned \texttt{requirements.txt}; full freeze in \texttt{requirements-freeze.txt}). Hardware: one NVIDIA A100-40GB (SLURM), RHEL~8.6. Training takes about 5 minutes; attacks 18 (test) and 28 (validation) minutes; analyses under 10 minutes on CPU. Quality scores used the NIST NFIQ2 v2.3.0 and v2.2.0 Windows binaries and the MCLFIQ model; their outputs are included, so the rest of the pipeline runs without them.
+
+\textbf{Checkpoint and data.} The trained embedder \texttt{checkpoints/v3.pt} (45\,MB) is in the repository (SHA-256 \texttt{6d770c64\ldots 43feff4}, full hash in \texttt{SHA256SUMS}). The PolyU database is not redistributed because of its licence; access is granted by the PolyU Biometrics Research Centre, and \texttt{results/data/images.csv} lists the exact images per split.
+
+\textbf{Instructions.} With \texttt{DATA\_ROOT} set in \texttt{config.py}: (1) \texttt{python data.py; python -m src.pairs}; (2) copy \texttt{checkpoints/v3.pt} to \texttt{out/ckpt/} and run \texttt{calibrate.py --ckpt v3} (or train with \texttt{./run\_all.sh phase1}); (3) copy \texttt{results/data/quality.csv} and \texttt{quality\_cutoffs.json} to \texttt{out/} (or re-score, Option~C); (4) \texttt{sbatch jobs/attack\_job.sh --splits test} and \texttt{--splits val}; (5) \texttt{analyze.py}, \texttt{policy.py}, \texttt{make\_figs.py}. \texttt{REPRODUCIBILITY.md} gives every command, expected outputs and the numbers to compare. Scores can differ between GPU models by about $10^{-3}$ (TF32); exact reproduction uses the released checkpoint on an A100.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Commit history of the repository (hash, timestamp in IST, change). The report PDF itself is added in the commit after \texttt{v1.0}.}
+\label{tab:commits}
+\begin{tabular}{lll}
+\toprule
+Hash & Timestamp (+0530) & Change \\
+\midrule
+\texttt{e401451} & 2026-11-26 03:12 & Full pipeline (E0--E3, Stages 1--2) \\
+\texttt{a7d61b4} & 2026-11-26 13:05 & results/, paper/, checks \\
+\texttt{94e5d41} & 2026-11-26 13:07 & Track results/logs \\
+\texttt{20a61c5} & 2026-11-26 19:50 & Report corrections \\
+\texttt{ce0cf86} & 2026-11-26 20:23 & Report PDF \\
+\texttt{5089434} & 2026-11-26 20:27 & README summary \\
+\texttt{d52b8f5} & 2026-11-27 02:28 & Per-tier score drop \\
+\texttt{23e5bf0} & 2026-11-27 02:40 & Report PDF update \\
+\texttt{a845df5} & 2026-11-27 03:01 & \textbf{v1.0}: env, checkpoint, repro docs \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Conclusion}
 On cross-session contactless verification, poor-quality probes look more vulnerable mainly because they sit closer to the threshold. After margin control, NFIQ2 quality retains a small, replicated association with robustness that reflects finger-level traits rather than capture quality. A FAR-floored adaptive threshold recovers acceptance for poor captures at bounded FAR but only by redistribution, and margin-based rejection protects far better than quality-based rejection. Robustness evaluations of biometric systems should report margin-controlled effects rather than raw comparisons across quality tiers.
 
 \section*{Acknowledgment}
 The PolyU Contactless 2D Fingerprint Database was kindly provided by the Biometrics Research Centre, The Hong Kong Polytechnic University.
 
-\bibliographystyle{IEEEtran}
+{\small
+\bibliographystyle{ieeenat_fullname}
 \bibliography{refs}
+}
 
 \end{document}
