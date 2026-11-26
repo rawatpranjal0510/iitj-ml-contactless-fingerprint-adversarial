@@ -1,0 +1,71 @@
+[test] accepted pairs: 553 | NFIQ2 analysis set: 547 pairs, 35 fingers | B=1000
+
+Tier summary (ASR at eps=0.05/255):
+ metric tier   n  fingers  mean_M  median_eps_star    ASR     lo     hi
+ nfiq2   Q1 172       20   0.072            0.024 92.442 88.827 97.144
+ nfiq2   Q2 143       16   0.112            0.044 58.042 29.861 86.491
+ nfiq2   Q3 232       13   0.093            0.043 59.052 38.391 77.965
+mclfiq   Q1 121       15   0.084            0.030 80.165 62.067 92.309
+mclfiq   Q2 304       25   0.086            0.035 69.408 53.501 83.221
+mclfiq   Q3 128       15   0.111            0.039 60.156 30.132 90.250
+
+ASR (%) by margin band x tier at eps=0.05/255 (n in brackets):
+tier                 Q1          Q2          Q3
+band                                           
+[0.00,0.05)  100.0 [65]  100.0 [26]  100.0 [60]
+[0.05,0.10)  100.0 [61]  100.0 [32]   97.1 [69]
+[0.10,0.15)   78.9 [38]   61.5 [39]   16.4 [61]
+>=0.15         37.5 [8]    2.2 [46]    0.0 [42]
+  regressions done: nfiq2
+  regressions done: mclfiq
+  regressions done: nfiq2+fail
+
+Q effect per +0.1 Q (ratio = odds ratio for success; = multiplicative change in eps* for log_eps*):
+    metric      outcome control   n   beta  ratio    lo     hi  boot_ok  reject_H0
+     nfiq2 success@0.05    none 547 -0.322  0.725 0.543  0.871     1000       True
+     nfiq2 success@0.05       M 547 -0.958  0.384 0.196  0.619     1000       True
+     nfiq2 success@0.05   bandM 547 -0.689  0.502 0.343  0.730     1000       True
+     nfiq2 success@0.05    logM 547 -0.944  0.389 0.197  0.615     1000       True
+     nfiq2     log_eps*    none 547  0.130  1.138 1.045  1.267     1000       True
+     nfiq2     log_eps*       M 547  0.070  1.073 1.033  1.109     1000       True
+     nfiq2     log_eps*   bandM 547  0.072  1.075 1.034  1.110     1000       True
+     nfiq2     log_eps*    logM 547  0.066  1.068 1.037  1.095     1000       True
+    mclfiq success@0.05    none 553 -1.403  0.246 0.056  0.784     1000       True
+    mclfiq success@0.05       M 553 -2.133  0.118 0.012 37.488     1000      False
+    mclfiq success@0.05   bandM 553 -1.866  0.155 0.029 14.816     1000      False
+    mclfiq success@0.05    logM 553 -2.118  0.120 0.015 66.392     1000      False
+    mclfiq     log_eps*    none 553  0.509  1.664 1.141  2.639     1000       True
+    mclfiq     log_eps*       M 553  0.189  1.208 0.800  1.505     1000      False
+    mclfiq     log_eps*   bandM 553  0.216  1.240 0.814  1.576     1000      False
+    mclfiq     log_eps*    logM 553  0.173  1.189 0.924  1.384     1000      False
+nfiq2+fail success@0.05    none 553 -0.329  0.720 0.543  0.859     1000       True
+nfiq2+fail success@0.05       M 553 -0.961  0.383 0.196  0.609     1000       True
+nfiq2+fail success@0.05   bandM 553 -0.692  0.500 0.343  0.721     1000       True
+nfiq2+fail success@0.05    logM 553 -0.946  0.388 0.197  0.602     1000       True
+nfiq2+fail     log_eps*    none 553  0.134  1.143 1.050  1.268     1000       True
+nfiq2+fail     log_eps*       M 553  0.071  1.073 1.036  1.107     1000       True
+nfiq2+fail     log_eps*   bandM 553  0.073  1.076 1.039  1.110     1000       True
+nfiq2+fail     log_eps*    logM 553  0.066  1.068 1.038  1.095     1000       True
+
+B3 PGD vs random noise:
+   eps  ASR_PGD    lo    hi  ASR_noise  lo_n  hi_n
+ 0.01     15.0  10.0  21.5        0.0   0.0   0.0
+ 0.02     30.9  22.7  41.2        0.0   0.0   0.0
+ 0.03     44.5  33.5  56.9        0.2   0.0   0.6
+ 0.05     69.6  55.0  84.5        0.2   0.0   0.6
+0.075     84.1  69.4  97.0        0.5   0.0   1.5
+  0.1     94.2  85.5 100.0        0.9   0.2   2.0
+ 0.15    100.0 100.0 100.0        1.1   0.2   2.2
+    1    100.0 100.0 100.0        9.2   5.7  13.6
+    2    100.0 100.0 100.0       19.9  14.1  27.0
+    4    100.0 100.0 100.0       43.2  30.6  57.9
+    8    100.0 100.0 100.0       70.2  54.7  83.9
+
+Within-finger check (eps* ratio per +0.1 Q, finger-clustered SE):
+ metric          model   n  fingers  ratio     lo     hi      p  within_finger_sd_Q
+ nfiq2           logM 516       28 1.0683 1.0388 1.0986 0.0000              0.0449
+ nfiq2 logM+finger_FE 516       28 1.0316 0.9963 1.0680 0.0798              0.0449
+mclfiq           logM 492       26 1.2136 1.0175 1.4475 0.0313              0.0072
+mclfiq logM+finger_FE 492       26 0.9875 0.9157 1.0649 0.7441              0.0072
+
+Saved tables -> /iitjhome/m24ma2008/Pranjal/MLProject/Codes/out/tables  figures -> /iitjhome/m24ma2008/Pranjal/MLProject/Codes/out/figs  (suffix _test)

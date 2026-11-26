@@ -1,0 +1,10 @@
+cpu-bind=MASK - gpu1, task  0  0 [2914527]: mask 0x9008800000000000000000000000000090088000000000000000000000000 set
+Node: gpu1  Start: Thu Nov 26 12:48:01 IST 2026  Args: --splits test --sample 100 --steps 100 --restarts 5 --eps 0.05 --suffix _strong
+[test] 100/100 pairs  248s
+[test] max |S_clean - calibrate S| = 1.64e-03
+
+[test] attacked 100 pairs (S > tau_floor) | accepted at tau: 100 from 28 fingers
+  eps=0.05/255  ASR PGD= 73.0%  noise=  1.0%  mean S drop=0.139 | PGD ASR by NFIQ2 tier {1: 96.8, 2: 67.6, 3: 57.1}
+  eps*: median 0.0300/255  IQR 0.0150-0.0541 | not broken at 0.5/255: 0 | Spearman(eps*, M) = 0.952
+  median eps* by NFIQ2 tier: {1: 0.019, 2: 0.0376, 3: 0.0342}
+End: Thu Nov 26 12:52:17 IST 2026

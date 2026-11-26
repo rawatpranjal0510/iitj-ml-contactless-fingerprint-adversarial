@@ -1,0 +1,24 @@
+cpu-bind=MASK - gpu2, task  0  0 [3432320]: mask 0x4000000038000000000000000000000040000000380000000000000000000000 set
+Node: gpu2  Start: Thu Nov 26 02:07:46 IST 2026  Args: --splits test
+[test] 128/713 pairs  196s
+[test] 256/713 pairs  390s
+[test] 384/713 pairs  584s
+[test] 512/713 pairs  778s
+[test] 640/713 pairs  972s
+[test] 713/713 pairs  1089s
+
+[test] attacked 713 pairs (S > tau_floor) | accepted at tau: 553 from 35 fingers
+  eps=0.01/255  ASR PGD= 15.0%  noise=  0.0%  mean S drop=0.024 | PGD ASR by NFIQ2 tier {1: 24.2, 2: 11.9, 3: 9.9}
+  eps=0.02/255  ASR PGD= 30.9%  noise=  0.0%  mean S drop=0.049 | PGD ASR by NFIQ2 tier {1: 44.4, 2: 25.2, 3: 24.1}
+  eps=0.03/255  ASR PGD= 44.5%  noise=  0.2%  mean S drop=0.075 | PGD ASR by NFIQ2 tier {1: 63.5, 2: 37.1, 3: 34.5}
+  eps=0.05/255  ASR PGD= 69.6%  noise=  0.2%  mean S drop=0.131 | PGD ASR by NFIQ2 tier {1: 92.7, 2: 58.0, 3: 59.1}
+  eps=0.075/255  ASR PGD= 84.1%  noise=  0.5%  mean S drop=0.206 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 79.0, 3: 75.0}
+  eps=0.1/255  ASR PGD= 94.2%  noise=  0.9%  mean S drop=0.286 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 89.5, 3: 92.7}
+  eps=0.15/255  ASR PGD=100.0%  noise=  1.1%  mean S drop=0.454 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 100.0, 3: 100.0}
+  eps=1/255  ASR PGD=100.0%  noise=  9.2%  mean S drop=1.684 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 100.0, 3: 100.0}
+  eps=2/255  ASR PGD=100.0%  noise= 19.9%  mean S drop=1.726 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 100.0, 3: 100.0}
+  eps=4/255  ASR PGD=100.0%  noise= 43.2%  mean S drop=1.730 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 100.0, 3: 100.0}
+  eps=8/255  ASR PGD=100.0%  noise= 70.2%  mean S drop=1.729 | PGD ASR by NFIQ2 tier {1: 100.0, 2: 100.0, 3: 100.0}
+  eps*: median 0.0342/255  IQR 0.0166-0.0591 | not broken at 0.5/255: 0 | Spearman(eps*, M) = 0.951
+  median eps* by NFIQ2 tier: {1: 0.0239, 2: 0.0439, 3: 0.043}
+End: Thu Nov 26 02:26:01 IST 2026

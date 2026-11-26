@@ -1,6 +1,6 @@
-out/
-out_old_v2/
-logs/
+/out/
+/out_old_v2/
+/logs/
 __pycache__/
 *.pyc
 *.tgz

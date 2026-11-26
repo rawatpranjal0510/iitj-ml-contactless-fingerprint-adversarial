@@ -1,0 +1,26 @@
+[val tuning] objective = Q1 TAR under attack @ eps=0.05/255, s.t. val FAR <= 0.150%
+  chosen: Q_high=q90 (0.650), alpha=0.085 | val FAR=0.148% | val Q1 TARatt=6.2% | B2-global tau=0.6583 (tau=0.6837, tau_floor=0.6413)
+
+[test] cross EER = 10.50% | policies (all %):
+      policy  FAR   TAR  TAR_Q1  TAR_Q2  TAR_Q3  TARatt_0.05  TARatt_0.05_Q1
+    B1_fixed 0.08 30.72   22.47   29.07   44.96         9.33            1.64
+ B2_adaptive 0.12 35.72   31.57   32.11   45.54        11.72            5.56
+   B2_global 0.13 35.94   29.29   32.72   49.22        12.61            3.91
+floor_global 0.18 39.61   32.95   36.79   52.52        14.94            5.68
+
+Test differences (percentage points, 95% cluster-bootstrap CI):
+            comparison         metric  diff_pp    lo    hi  significant
+ B2_adaptive-B1_fixed            TAR     5.00  3.22  7.11         True
+ B2_adaptive-B1_fixed         TAR_Q1     9.09  5.71 12.50         True
+ B2_adaptive-B1_fixed    TARatt@0.05     2.39  0.83  4.39         True
+ B2_adaptive-B1_fixed TARatt_Q1@0.05     3.91  0.81  7.60         True
+B2_adaptive-B2_global            TAR    -0.22 -1.44  0.83        False
+B2_adaptive-B2_global         TAR_Q1     2.27  1.05  3.50         True
+B2_adaptive-B2_global    TARatt@0.05    -0.89 -2.39  0.39        False
+B2_adaptive-B2_global TARatt_Q1@0.05     1.64  0.32  3.16         True
+
+B4 (test, eps=0.05/255): attacks prevented at a given genuine-rejection rate
+  quality  10% rejected -> 13.8% prevented | 20% rejected -> 26.2% prevented | 30% rejected -> 39.7% prevented   (random rejection = same % prevented)
+  margin   10% rejected -> 14.4% prevented | 20% rejected -> 28.7% prevented | 30% rejected -> 43.1% prevented   (random rejection = same % prevented)
+
+Saved tables -> /iitjhome/m24ma2008/Pranjal/MLProject/Codes/out/tables  figures -> /iitjhome/m24ma2008/Pranjal/MLProject/Codes/out/figs
