@@ -1,6 +1,21 @@
 # Margin-Controlled Adversarial Vulnerability & Quality-Adaptive Thresholding (PolyU Contactless 2D)
 
-Kalpana Yadav, Pranjal Rawat, Vaibhav Kunte (IIT Jodhpur)
+**Kalpana Yadav, Pranjal Rawat, Vaibhav Kunte** · Machine Learning course project, Indian Institute of Technology Jodhpur
+
+📄 **Paper:** [reports/paper.pdf](reports/paper.pdf) · LaTeX source: [paper/](paper/) · Results: [results/](results/)
+
+## What this project asks
+Low-quality contactless fingerprint probes look more vulnerable to adversarial attacks, but they also sit closer to the acceptance threshold. **Does image quality predict adversarial vulnerability *beyond* the clean verification margin M = S − τ?** And can a quality-adaptive threshold recover genuine acceptance for poor captures without loosening security?
+
+## Key findings (held-out test set, replicated on validation)
+- **The matcher is fragile:** white-box L∞ PGD breaks every accepted cross-session pair at ε = 1/255; random noise of the same budget does not.
+- **Margin dominates:** the clean margin explains about half of the raw quality–robustness association (robustness radius ε\* vs margin: Spearman 0.95).
+- **A small residual remains, but it is between fingers:** ε\* ratio per +0.1 NFIQ2 quality after log-margin control is 1.068 (95% CI 1.037–1.095) on test and 1.038 on validation, and it disappears within fingers (p = 0.08 and 0.47).
+- **The adaptive threshold redistributes acceptance:** it raises low-quality TAR by 9.1 points at 0.12% FAR, but matches a single threshold at equal FAR overall.
+- **Margin beats quality for rejection:** at ε = 0.02/255, rejecting the 20% smallest-margin genuine pairs prevents 65% of attacks, against 30% for quality-based rejection.
+
+## Setup at a glance
+PolyU Contactless 2D (S1 enrolled vs S2 probe) · subject-disjoint split 202/84/50 fingers · ResNet-18 + ArcFace · NFIQ2 v2.3 (MCLFIQ as ablation) · PGD with robustness radius ε\* · Firth logistic + log ε\* regression with 1,000-resample finger-clustered bootstrap.
 
 ## Pipeline (`./run_all.sh <stage>`)
 | Stage | Scripts | Output |
